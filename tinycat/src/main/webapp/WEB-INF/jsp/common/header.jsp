@@ -10,20 +10,15 @@
 				class="btn btn-navbar"> <span class="icon-bar"></span> <span
 				class="icon-bar"></span> <span class="icon-bar"></span>
 			</a>
-			<div class="brand">&nbsp;&nbsp;&nbsp;&nbsp;Kalor&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div class="brand">&nbsp;&nbsp;&nbsp;&nbsp;Tiny<span class="text-info">Cat</span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav">
 					<li <%if (fun.equals("index")) {%> class="active" <%}%>><a
 						href="<%=contextPath%>/index"><i class="icon-home icon-white"></i>
 							首页</a></li>
-					<li <%if (fun.equals("blog")) {%> class="active" <%}%>><a
-						href="<%=contextPath%>/blog"><i class="icon-edit icon-white"></i>
-							博文</a></li>
-					<li <%if (fun.equals("lucence")) {%> class="active" <%}%>><a
-						href="<%=contextPath%>/lucence"><i
-							class="icon-search icon-white"></i> lucence</a></li>
-					<li><a href="<%=contextPath%>/index#leaveMsgSec"><i
-							class="icon-envelope icon-white"></i> 留言</a></li>
+					<li <%if (fun.equals("teach")) {%> class="active" <%}%>><a
+						href="<%=contextPath%>/teach"><i class="icon-edit icon-white"></i>
+							Answer</a></li>
 					<li><a href="<%=contextPath%>/index#aboutSec"><i
 							class="icon-info-sign icon-white"></i> 关于</a></li>
 				</ul>
@@ -40,13 +35,10 @@
 						data-toggle="dropdown">${loginUser.name }<b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><i class="icon-home icon-black"></i>
-									个人主页</a></li>
 							<li><a href="javascript:void(0)"><i
-									class="icon-edit icon-black"></i> 日志：${loginUser.blogNum }篇</a></li>
-							<li class="divider"></li>
-							<li><a href="#" data-type="pjax"><i
-									class="icon-pencil icon-black"></i> 写日志</a></li>
+									class="icon-edit icon-black"></i> 等级：1</a></li>
+							<li><a href="javascript:void(0)"><i
+									class="icon-edit icon-black"></i> 积分：12</a></li>
 							<li class="divider"></li>
 							<li><a href="#" onclick="userQuit();"><i
 									class="icon-off icon-black"></i> 注销</a></li>

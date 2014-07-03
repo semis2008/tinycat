@@ -25,15 +25,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wnJava.bo.DiaryBO;
-import com.wnJava.bo.LeaveMsgBO;
-import com.wnJava.bo.UserBO;
-import com.wnJava.service.DiaryService;
-import com.wnJava.service.UserService;
-import com.wnJava.util.JsonUtil;
-import com.wnJava.util.StringUtil;
-import com.wnJava.vo.AppInfoVO;
-import com.wnJava.vo.TagVO;
+import com.tinycat.util.JsonUtil;
+import com.tinycat.util.StringUtil;
 
 /**
  * 用户相关处理类

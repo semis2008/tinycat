@@ -5,7 +5,7 @@
 	<artifactId>tinycat</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>tinycat Maven Webapp</name>
+	<name>tinycat</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<springframework.version>3.2.8.RELEASE</springframework.version>
@@ -249,6 +249,6 @@
 
 	</dependencies>
 	<build>
-		<finalName>Kalor</finalName>
+		<finalName>tinycat</finalName>
 	</build>
 </project>

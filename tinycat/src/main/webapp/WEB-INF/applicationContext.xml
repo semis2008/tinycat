@@ -86,8 +86,8 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/index = anon
-				/blog* = authc
-				/blog/* = authc
+				/teach* = authc
+				/teach/* = authc
 				/lucence* = perms[lucence:view]
 				/logout = logout
 			</value>

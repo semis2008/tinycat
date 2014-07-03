@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wnJava.util.RandomGraphic;
+import com.tinycat.util.RandomGraphic;
 
 @Controller
 @RequestMapping("/RandImg")
