@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 		user.setName(name);
 		user.setEmail(email);
 		user.setPassword(StringUtil.passEncrypt(password));
-		Integer randomPhoto = (int) (Math.random()*8+1);
+		Integer randomPhoto = (int) (Math.random()*User.PHOTO_SCOPE+1);
 		user.setPhoto(randomPhoto+"");
 		user.setReg_time(new Date());
 		user.setGroup_id(2);

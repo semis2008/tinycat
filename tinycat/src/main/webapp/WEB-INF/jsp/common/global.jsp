@@ -1,11 +1,11 @@
-<%@page import="com.tinycat.pojo.User"%>
+<%@page import="com.tinycat.dto.UserDTO"%>
 <%@ page pageEncoding="utf-8" %>
 <%
 	// 设置basePath参数
 	String contextPath = request.getContextPath(); // 工程路径
 	int serverPort = request.getServerPort(); // 服务器端口
 	StringBuffer urlStr = request.getRequestURL();
-	User user = (User)request.getAttribute("loginUser");
+	UserDTO user = (UserDTO)request.getAttribute("loginUser");
 	
 	//获取当前页面模块
 	String fun = "index";

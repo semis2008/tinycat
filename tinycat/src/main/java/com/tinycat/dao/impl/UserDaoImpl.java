@@ -40,4 +40,6 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update user set login_time = now() where email = ?";
 		return dbUtilsTemplate.update(sql, email);
 	}
+	
+	
 }

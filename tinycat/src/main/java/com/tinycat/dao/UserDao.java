@@ -24,4 +24,6 @@ public interface UserDao {
 	int insertUser(User user);
 	
 	int updateUserLoginTime(String email);
+	
+	
 }

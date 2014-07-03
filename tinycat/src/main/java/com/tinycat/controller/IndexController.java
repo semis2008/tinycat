@@ -8,10 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tinycat.dto.UserDTO;
 import com.tinycat.pojo.User;
 import com.tinycat.service.UserService;
 import com.tinycat.util.WebUtil;
- 
 
 /**
  * 系统响应处理类
@@ -21,10 +21,9 @@ import com.tinycat.util.WebUtil;
  */
 @Controller
 public class IndexController {
-
 	@Resource
 	UserService userService;
-	
+
 	/**
 	 * 显示主页
 	 * 
@@ -35,10 +34,7 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/index")
 	private ModelAndView showIndex(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		 
-		User user = WebUtil.getLoginUser(userService);
-		req.setAttribute("loginUser", user);
-		 
+		setLoginUserDTO(req);
 		return new ModelAndView("index");
 	}
 
@@ -52,12 +48,10 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/login")
 	private ModelAndView showLogin(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		 
-		User user = WebUtil.getLoginUser(userService);
-		req.setAttribute("loginUser", user);
+		setLoginUserDTO(req);
 		return new ModelAndView("login");
 	}
-	
+
 	/**
 	 * 注册页
 	 * 
@@ -68,12 +62,10 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/regist")
 	private ModelAndView showRegist(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		 
-		User user = WebUtil.getLoginUser(userService);
-		req.setAttribute("loginUser", user);
+		setLoginUserDTO(req);
 		return new ModelAndView("regist");
 	}
-	
+
 	/**
 	 * 未授权错误页
 	 * 
@@ -84,8 +76,12 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/unauthorized")
 	private ModelAndView showUnauthorized(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		User user = WebUtil.getLoginUser(userService);
-		req.setAttribute("loginUser", user);
+		setLoginUserDTO(req);
 		return new ModelAndView("unauthorized");
+	}
+
+	private void setLoginUserDTO(HttpServletRequest req) {
+		UserDTO user = WebUtil.getLoginUser(userService);
+		req.setAttribute("loginUser", user);
 	}
 }

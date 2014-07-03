@@ -5,6 +5,7 @@ import java.util.Date;
 public class User {
 	public static final String STATUS_NORMAL = "normal";
 	public static final String STATUS_DELETE = "delete";
+	public static final int PHOTO_SCOPE = 15;
 		
 	private Long id;
 	private String name;
@@ -14,6 +15,8 @@ public class User {
 	private Date reg_time;
 	private Date login_time;
 	private int group_id;
+	private int level;
+	private int points;
 	private String status;
 
 	public Long getId() {
@@ -50,6 +53,22 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	public void setPassword(String password) {

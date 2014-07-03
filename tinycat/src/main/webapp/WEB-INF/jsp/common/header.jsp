@@ -17,8 +17,8 @@
 						href="<%=contextPath%>/index"><i class="icon-home icon-white"></i>
 							首页</a></li>
 					<li <%if (fun.equals("teach")) {%> class="active" <%}%>><a
-						href="<%=contextPath%>/teach"><i class="icon-edit icon-white"></i>
-							Answer</a></li>
+						href="<%=contextPath%>/teach"><i class="icon-magic icon-white"></i>
+							教教我</a></li>
 					<li><a href="<%=contextPath%>/index#aboutSec"><i
 							class="icon-info-sign icon-white"></i> 关于</a></li>
 				</ul>
@@ -38,9 +38,9 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="javascript:void(0)"><i
-									class="icon-edit icon-black"></i> 等级：1</a></li>
+									class=" icon-flag icon-black"></i> 等级：${loginUser.level }</a></li>
 							<li><a href="javascript:void(0)"><i
-									class="icon-edit icon-black"></i> 积分：12</a></li>
+									class=" icon-leaf icon-black"></i> 积分：${loginUser.points }</a></li>
 							<li class="divider"></li>
 							<li><a href="<%=contextPath%>/logout"><i
 									class="icon-off icon-black"></i> 注销</a></li>
