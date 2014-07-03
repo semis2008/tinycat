@@ -1,0 +1,216 @@
+html{
+	height: 100%;
+}
+
+body{
+	height: 100%;
+}
+
+#content {
+	background: url("../img/bg04.png") repeat scroll 0 0 #F7F7F7;
+	border-top: 1px solid #FFFFFF;
+	min-height: 100%;
+	margin-top: -20px;
+}
+
+#main-wrapper {
+	margin-top: 60px;
+	padding-bottom: 100px;
+}
+
+.diarySec a,#hotDiarySec .button {
+	text-decoration: none;
+}
+
+.diarySec h3 {
+	font-size: 24px;
+}
+
+.diarySec blockquote {
+	margin-left: 85px;
+}
+
+.diarySec em {
+	color: #6b7770;
+	font-size: small;
+	float: right;
+}
+
+.button {
+	background: none repeat scroll 0 0 #E3DAA8;
+	border-radius: 8px 8px 8px 8px;
+	color: #FFFFFF;
+	display: inline-block;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 700;
+	outline: 0 none;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.2s ease-in-out 0s;
+	font-size: 1.25em;
+	padding: 0.85em 1.85em;
+	margin-top: 20px;
+}
+
+.button:hover {
+	background: none repeat scroll 0 0 #EBE3B2;
+}
+
+.button-alt {
+	background: none repeat scroll 0 0 #C1CAC5;
+}
+
+.button-alt:hover {
+	background: none repeat scroll 0 0 #CCD5D0;
+}
+
+.footer {
+	color: white;
+	padding: 10px 0;
+	z-index: 9999;
+	background-color: #1B1B1B;
+    background-image: linear-gradient(to bottom, #222222, #111111);
+    background-repeat: repeat-x;
+    border-color: #252525;
+}
+
+.left {
+	float: left;
+}
+
+.right{
+	float: right;
+}
+.padding-large {
+	padding: 35px;
+}
+
+.padding-middle {
+	padding: 25px;
+}
+
+.padding-small {
+	padding: 15px;
+}
+
+.padding-mini {
+	padding: 5px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.article {
+	margin-top: 40px;
+}
+
+.margin-large {
+	margin: 45px;
+}
+
+.margin-middle {
+	margin: 30px;
+}
+
+.margin-top-small {
+	margin-top: 15px;
+}
+
+.margin-top-middle {
+	margin-top: 30px;
+}
+
+.margin-top-large {
+	margin-top: 60px;
+}
+
+.margin-bottom-middle {
+	margin-bottom: 30px;
+}
+
+.margin-small {
+	margin: 15px;
+}
+
+.margin-right-middle {
+	margin-right: 15px;
+}
+
+.margin-right-small {
+	margin-right: 10px;
+}
+
+.margin-left-small {
+	margin-left: 10px;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.padding-top-bottom-middle {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.margin-bottom-middle {
+	margin-bottom: 25px;
+}
+
+.margin-top-bottom-mini {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.border-bottom-dash {
+	border-bottom-style: dashed;
+	border-bottom-width: thin;
+}
+
+.pos-relative {
+	position: relative;
+}
+
+.panel {
+	border-radius: 6px 6px 6px 6px;
+	box-shadow: 0 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0 20px 70px 8px
+		rgba(0, 0, 0, 0.25);
+	color: #333333;
+	margin-bottom: 50px;
+	padding: 0px;
+}
+
+h1,h2,h3,h4,h5,h6,h7 {
+	color: #6B7770;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.diaryContent {
+	font-size: 10.5pt;
+	line-height: 1.6;
+}
+
+.goToTopDiv {
+	bottom: 100px;
+	right: 50px;
+	margin: 0 0 10%;
+	z-index: 999999;
+}
+
+#content section {
+	background: none repeat scroll 0 0 #FFFFFF;
+	box-shadow: 2px 2px 2px 1px rgba(128, 128, 128, 0.1);
+	margin: 0 0 30px;
+	padding: 25px 20px 30px 20px;
+	position: relative;
+}
+
+section:last-child,article:last-child {
+	margin-bottom: 0;
+}
