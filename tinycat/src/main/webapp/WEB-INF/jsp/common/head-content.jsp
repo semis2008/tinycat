@@ -10,6 +10,12 @@
 	type="text/css" />
 <link href="<%=staticPath %>/css/lib/bootstrap-responsive.css<%=version %>" rel="stylesheet"
 	type="text/css" />
+	<link type="text/css"
+	href="<%=staticPath %>/css/lib/messenger.css"
+	rel="stylesheet" media="screen" />
+<link type="text/css"
+	href="<%=staticPath %>/css/lib/messenger-theme-future.css"
+	rel="stylesheet" media="screen" />
 <link href="<%=staticPath %>/css/lib/font-awesome.min.css<%=version %>" rel="stylesheet"
 	type="text/css" />
 <link href="<%=staticPath %>/css/default.css<%=version %>" rel="stylesheet" type="text/css"

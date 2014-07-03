@@ -22,6 +22,8 @@
 	String keywords = "虚拟角色 java tinycat 人工智能 交互";
 	String version = "?v_1.0.0";
 	String staticPath = contextPath + "/static";
+	String headPath = staticPath + "/img/head";
+	
 	String ICP_BEIAN = "2013 京ICP备13011487号";
 	
 %>

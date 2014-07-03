@@ -14,9 +14,12 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.tinycat.pojo.User;
+import com.tinycat.service.UserService;
+
 public class myRealm extends AuthorizingRealm {
-//	@Resource
-//	UserService userService;
+	@Resource
+	UserService userService;
 
 	public myRealm() {
 		super();
@@ -29,24 +32,24 @@ public class myRealm extends AuthorizingRealm {
 	// 授权
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 		String loginName = (String) principalCollection.fromRealm(getName()).iterator().next();
-//		if (null == user) {
-//			return null;
-//		} else {
+		User user = userService.getUserByName(loginName);
+		if (null == user) {
+			return null;
+		} else {
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//			for (Group group : CroupManager.getGroupByUserLevel(user.getUser_level())) {
-//				info.addStringPermissions(group.getPermissionList());
-//			}
+			Group group = CroupManager.getGroupAuthById(user.getGroup_id());
+			info.addStringPermissions(group.getPermissionList());
 			return info;
-//		}
+		}
 	}
 
 	// 认证
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-//		UserBO user = userService.getUserByName(upToken.getUsername());
-//		if (user != null) {
-//			return new SimpleAuthenticationInfo(user.getEmail(), user.getPassword(), getName());
-//		}
+		User user = userService.getUserByName(upToken.getUsername());
+		if (user != null) {
+			return new SimpleAuthenticationInfo(user.getEmail(), user.getPassword(), getName());
+		}
 		return null;
 	}
 }

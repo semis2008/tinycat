@@ -22,6 +22,11 @@
 	type="text/javascript"></script>
 <script src="<%=staticPath%>/js/bootstrap.js<%=version%>"
 	type="text/javascript"></script>
+<script type="text/javascript"
+	src="<%=staticPath%>/js/underscore-1.4.4.js"></script>
+<script type="text/javascript"
+	src="<%=staticPath%>/js/backbone-0.9.10.js"></script>
+<script type="text/javascript" src="<%=staticPath%>/js/messenger.min.js"></script>
 <script src="<%=staticPath%>/js/common.js<%=version%>"
 	type="text/javascript"></script>
 <!-- END CORE PLUGINS -->

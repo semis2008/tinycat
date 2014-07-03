@@ -5,17 +5,14 @@ import java.util.List;
 
 public class CroupManager {
 	
-	public static List<Group> getGroupByUserLevel(String level) {
-		List<Group> groups = new ArrayList<Group>();
-		
+	public static Group getGroupAuthById(int groupId) {
 		Group group = new Group();
 		List<String> permissions = new ArrayList<String>();
-		permissions.add("view:members");
-		permissions.add("edit:self");
+		permissions.add("teach:allow");
+		if(groupId==1) {
+			permissions.add("admin:yes");
+		}
 		group.setPermissionList(permissions);
-		
-		groups.add(group);
-		return groups;
-		
+		return group;
 	}
 }

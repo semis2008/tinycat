@@ -1,5 +1,7 @@
 package com.tinycat.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.tinycat.pojo.User;
 
 /**
@@ -17,4 +19,7 @@ public interface UserService {
 	 */
 	User getUserByName(String name);
 	
+	Boolean userRegist(HttpServletRequest req);
+
+	boolean updateUserLoginTime(String email);
 }

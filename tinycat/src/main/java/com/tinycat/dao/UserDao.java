@@ -21,4 +21,7 @@ public interface UserDao {
 	 */
 	User queryUserByEmail(String email);
  
+	int insertUser(User user);
+	
+	int updateUserLoginTime(String email);
 }

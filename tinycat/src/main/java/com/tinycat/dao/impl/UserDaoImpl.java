@@ -21,9 +21,23 @@ import com.tinycat.pojo.User;
 public class UserDaoImpl implements UserDao {
 	@Resource
 	private DbUtilsTemplate dbUtilsTemplate;
-
+	
+	@Override
 	public User queryUserByEmail(String email) {
 		String sql = "select * from user where email = ?";
 		return dbUtilsTemplate.findFirst(User.class, sql, email);
+	}
+
+	@Override
+	public int insertUser(User user) {
+		String sql = "insert into user (email,name,password,photo,reg_time,group_id,status) values (?,?,?,?,now(),?,?)";
+		Object[] param = { user.getEmail(), user.getName(), user.getPassword(), user.getPhoto(),user.getGroup_id(),user.getStatus()};
+		return dbUtilsTemplate.update(sql, param);
+	}
+
+	@Override
+	public int updateUserLoginTime(String email) {
+		String sql = "update user set login_time = now() where email = ?";
+		return dbUtilsTemplate.update(sql, email);
 	}
 }

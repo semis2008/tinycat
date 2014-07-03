@@ -93,3 +93,8 @@ h1,h2,h3,h4,h5,h6,h7 {
 section:last-child,article:last-child {
 	margin-bottom: 0;
 }
+
+.head_photo_20{
+	width: 20px;
+	height: 20px;
+}

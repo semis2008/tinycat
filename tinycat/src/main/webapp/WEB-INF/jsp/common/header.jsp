@@ -31,8 +31,10 @@
 								class="icon-ok-sign icon-white"></i> 登陆</a></li>
 					</shiro:guest>
 					<shiro:user>  
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">${loginUser.name }<b class="caret"></b>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><img alt="head" class="head_photo_20 img-circle" src="<%=headPath %>/${loginUser.photo }.jpg">
+						${loginUser.name }<b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="javascript:void(0)"><i
@@ -40,7 +42,7 @@
 							<li><a href="javascript:void(0)"><i
 									class="icon-edit icon-black"></i> 积分：12</a></li>
 							<li class="divider"></li>
-							<li><a href="#" onclick="userQuit();"><i
+							<li><a href="<%=contextPath%>/logout"><i
 									class="icon-off icon-black"></i> 注销</a></li>
 						</ul></li>
 						</shiro:user>

@@ -3,10 +3,14 @@ package com.tinycat.pojo;
 import java.util.Date;
 
 public class User {
+	public static final String STATUS_NORMAL = "normal";
+	public static final String STATUS_DELETE = "delete";
+		
 	private Long id;
 	private String name;
 	private String email;
 	private String password;
+	private String photo;
 	private Date reg_time;
 	private Date login_time;
 	private int group_id;
@@ -22,6 +26,14 @@ public class User {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public void setName(String name) {

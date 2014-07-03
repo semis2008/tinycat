@@ -57,7 +57,7 @@ public class IndexController {
 		req.setAttribute("loginUser", user);
 		return new ModelAndView("login");
 	}
-
+	
 	/**
 	 * 注册页
 	 * 
