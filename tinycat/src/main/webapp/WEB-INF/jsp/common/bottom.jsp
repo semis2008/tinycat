@@ -18,14 +18,14 @@
 
 
 <!-- BEGIN CORE PLUGINS -->
-<script src="<%=staticPath%>/js/jquery-1.8.2.js<%=version%>"
+<script src="<%=staticPath%>/js/lib/jquery-1.8.2.js<%=version%>"
 	type="text/javascript"></script>
-<script src="<%=staticPath%>/js/bootstrap.js<%=version%>"
+<script src="<%=staticPath%>/js/lib/bootstrap.js<%=version%>"
 	type="text/javascript"></script>
 <script type="text/javascript"
-	src="<%=staticPath%>/js/underscore-1.4.4.js"></script>
+	src="<%=staticPath%>/js/lib/underscore-1.4.4.js"></script>
 <script type="text/javascript"
-	src="<%=staticPath%>/js/backbone-0.9.10.js"></script>
+	src="<%=staticPath%>/js/lib/backbone-0.9.10.js"></script>
 <script type="text/javascript" src="<%=staticPath%>/js/messenger.min.js"></script>
 <script src="<%=staticPath%>/js/common.js<%=version%>"
 	type="text/javascript"></script>

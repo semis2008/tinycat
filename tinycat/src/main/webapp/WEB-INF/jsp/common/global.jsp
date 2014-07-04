@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="com.tinycat.dto.UserDTO"%>
 <%@ page pageEncoding="utf-8" %>
 <%
@@ -7,6 +8,7 @@
 	StringBuffer urlStr = request.getRequestURL();
 	UserDTO user = (UserDTO)request.getAttribute("loginUser");
 	
+	Date now = new Date();
 	//获取当前页面模块
 	String fun = "index";
 	if(urlStr.indexOf("index")>0) {

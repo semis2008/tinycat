@@ -1,4 +1,3 @@
-
 $(window).scroll(function() {
 	var t = $(document).scrollTop();
 	if (t >= 300) {
