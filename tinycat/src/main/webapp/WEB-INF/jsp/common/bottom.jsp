@@ -26,7 +26,8 @@
 	src="<%=staticPath%>/js/lib/underscore-1.4.4.js"></script>
 <script type="text/javascript"
 	src="<%=staticPath%>/js/lib/backbone-0.9.10.js"></script>
-<script type="text/javascript" src="<%=staticPath%>/js/messenger.min.js"></script>
+<script type="text/javascript"
+	src="<%=staticPath%>/js/lib/messenger.min.js"></script>
 <script src="<%=staticPath%>/js/common.js<%=version%>"
 	type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
