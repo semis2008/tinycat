@@ -50,9 +50,9 @@ public class ChatController {
 		IndexHolder holder = IndexHolder.getInstance();
 		//获取所有的answer
 		List<Answer> answerList = chatService.getAnswerList();
-		holder.optimize(Answer.class);
-		holder.add(answerList);
-		
+//		holder.optimize(Answer.class);
+//		holder.add(answerList);
+//		
 		JsonUtil.outputDTOToJSON("success", true, resp);
 	}
 }

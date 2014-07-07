@@ -11,7 +11,7 @@
 		<h3 class="">Tiny Cat</h3>
 	</header>
 	<div class="panel_body_container">
-		<div class="chat_container">
+		<div class="chat_container" id="chat_window">
 			<ul id="chat_content" class="unstyled">
 				<li>
 					<div class="media">

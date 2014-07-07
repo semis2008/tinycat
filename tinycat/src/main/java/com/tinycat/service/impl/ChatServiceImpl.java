@@ -27,13 +27,16 @@ public class ChatServiceImpl implements ChatService {
 	
 	@Override
 	public String getAnswer(String question, Long userId) {
-		// lucence查询问题以及问题的答案
+		List<Answer> answers = new ArrayList<Answer>();
 		//首先精确匹配，查看答案，没有的话，用lucence模糊按关键字查询
-		
+		answers = chatDao.queryAnswerByQuestionName(question);
+		if (answers.size() > 0) {
+			return answers.get((int) Math.random() * answers.size()).getContent();
+		}
+		// lucence查询问题以及问题的答案
 		try {
 			IndexHolder holder = IndexHolder.getInstance();
 			Query q = SearchHelper.makeQuery("questionContent", question);
-			List<Answer> answers = new ArrayList<Answer>();
 			List<Searchable> hits = holder.find(Answer.class, q, null, new Sort(), 1, 100);
 			for (Searchable searchable : hits) {
 				Answer v = (Answer) searchable;

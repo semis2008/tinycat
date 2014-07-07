@@ -7,7 +7,10 @@ function sendMsg(type) {
 	var userId = "";
 	var timeNow = new Date().format('hh:mm:ss');
 	var chatUl = $("#chat_content");
-
+	
+	if(msg=="")
+		return;
+	
 	if (type == 0) {// guest
 		userName = "Guest";
 		headPhoto = headPath + "/guest.jpg";
@@ -17,16 +20,17 @@ function sendMsg(type) {
 		var userPhoto = $("#loginUserPhoto").val();
 		headPhoto = headPath + "/" + userPhoto + ".jpg";
 	}
-	var msgHtml = "<li><div class=\"media\"><a href=\"javascript:void(0)\" class=\"pull-right\"> <img class=\"media-object img-circle\" style=\"width: 44px; height: 44px;\" " + "src=\"" + headPhoto + "\"></a><div class=\"media-body\">	<blockquote class=\"pull-right\">" + "<p class=\"\">" + msg
+	var msgHtml = "<li><div class=\"media\"><a href=\"javascript:void(0)\" class=\"pull-right\"> <img class=\"media-object img-circle\" style=\"width: 44px; height: 44px;\" " + "src=\"" + headPhoto + "\"></a><div class=\"media-body\">	<blockquote class=\"pull-right\">" + "<p class=\"user_msg\">" + msg
 	        + "</p><small>" + userName + " <em>" + timeNow + "</em></small></blockquote></div></div></li>";
 	// 禁用按钮
 	$("#sendBtn").attr("disabled", "disabled");
 	chatUl.append(msgHtml);
+	$("#sendMsgText").val("");
 	$.ajax({
 	    type: "POST",
 	    url: path + "/chat/answer",
 	    data: {
-	        msh: msg,
+	        msg: msg,
 	        userId: userId
 	    },
 	    dataType: "json",
@@ -34,9 +38,10 @@ function sendMsg(type) {
 		    if (msg.success) {
 			    var backTimeNow = new Date().format('hh:mm:ss');
 			    var tinyCatPhoto = headPath + "/tinycat.jpg";
-			    var backMsgHtml = "<li><div class=\"media\"><a href=\"javascript:void(0)\" class=\"pull-left\"> <img class=\"media-object img-polaroid\" style=\"width: 44px; height: 44px;\" " + "src=\"" + tinyCatPhoto + "\"></a><div class=\"media-body\">	<blockquote class=\"pull-left\">"
+			    var backMsgHtml = "<li><div class=\"media\"><a href=\"javascript:void(0)\" class=\"pull-left\"> <img class=\"media-object img-polaroid\" style=\"width: 32px; height: 32px;\" " + "src=\"" + tinyCatPhoto + "\"></a><div class=\"media-body\">	<blockquote class=\"pull-left\">"
 			            + "<p class=\"\">" + msg.list + "</p><small> TinyCat<em>" + backTimeNow + "</em></small></blockquote></div></div></li>";
 			    chatUl.append(backMsgHtml);
+			    $("#chat_window").scrollTop(500000); //滚动到底部，或许有更好的写法...
 			    $("#sendBtn").removeAttr("disabled");
 		    } else {
 			    showErrorMsg(msg.list);

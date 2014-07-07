@@ -30,6 +30,12 @@ public class LuceneTester {
 	public static void main(String[] args) throws IOException {
 		IndexHolder holder = IndexHolder.getInstance();
 		
+		Boolean ss = false;
+		setTrue(ss);
+		if(ss)
+			System.out.print("!!!!!!!!!!!!!!!!!!!");
+		
+		
 //		DiaryVO bo=  new DiaryVO();
 //		bo.setId(2l);
 //		bo.setAuthor_name("123");
@@ -54,5 +60,9 @@ public class LuceneTester {
 //		System.out.print(indexSearcher.getIndexReader().numDocs());//有效数
 		
 		
+	}
+	
+	public static void setTrue(Boolean ss) {
+		ss = Boolean.TRUE;
 	}
 }

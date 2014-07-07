@@ -14,4 +14,6 @@ public interface ChatDao {
 	 int updateWeight(Long qId);
 	 
 	 List<Answer> queryAnswerList();
+	 
+	 List<Answer> queryAnswerByQuestionName(String name);
 }

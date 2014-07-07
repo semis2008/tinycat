@@ -40,6 +40,12 @@ public class ChatDaoImpl implements ChatDao {
 		String sql = "select * from answer where 1=1";
 		return dbUtilsTemplate.find(Answer.class,sql);
 	}
+
+	@Override
+	public List<Answer> queryAnswerByQuestionName(String name) {
+		String sql = "select * from answer where question_content = ?";
+		return dbUtilsTemplate.find(Answer.class,sql,name);
+	}
 	
 	
 	
