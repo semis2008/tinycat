@@ -56,6 +56,9 @@
 <!-- 隐藏域，公用 -->
 <input type="hidden" value="<%=contextPath%>" id="contextPath">
 <input type="hidden" value="<%=headPath%>" id="headPath">
+<shiro:guest>
+<input type="hidden" value="-1" id="loginUserId">
+</shiro:guest>
 <shiro:user>
 <input type="hidden" value="${loginUser.id }" id="loginUserId">
 <input type="hidden" value="${loginUser.name }" id="loginUserName">

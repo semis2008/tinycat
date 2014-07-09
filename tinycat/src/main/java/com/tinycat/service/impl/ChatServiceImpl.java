@@ -12,6 +12,7 @@ import org.apache.lucene.search.Sort;
 import org.springframework.stereotype.Service;
 
 import com.tinycat.dao.ChatDao;
+import com.tinycat.dto.QuestionDTO;
 import com.tinycat.pojo.Answer;
 import com.tinycat.pojo.Question;
 import com.tinycat.search.IndexHolder;
@@ -31,7 +32,9 @@ public class ChatServiceImpl implements ChatService {
 		//首先精确匹配，查看答案，没有的话，用lucence模糊按关键字查询
 		answers = chatDao.queryAnswerByQuestionName(question);
 		if (answers.size() > 0) {
-			return answers.get((int) Math.random() * answers.size()).getContent();
+			Answer randAns = answers.get((int) Math.random() * answers.size());
+			chatDao.updateQuestionWeight(randAns.getQuestion_id());
+			return randAns.getContent();
 		}
 		// lucence查询问题以及问题的答案
 		try {
@@ -48,7 +51,7 @@ public class ChatServiceImpl implements ChatService {
 				//先看 是否有这个问题，没有的话新建，有的话计数+1
 				Question ques = chatDao.queryQuestionByName(question);
 				if(ques!=null) {
-					chatDao.updateWeight(ques.getId());
+					chatDao.updateQuestionWeight(ques.getId());
 				}else{
 					ques = new Question();
 					ques.setName(question);
@@ -72,5 +75,33 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public List<Answer> getAnswerList() {
 		return chatDao.queryAnswerList();
+	}
+
+	@Override
+	public List<Answer> getAnswerOrderByWeight(int n) {
+		List<Answer> answers = chatDao.queryAnswerOrderByWeight(0, n);
+		return answers;
+	}
+
+	@Override
+	public List<Question> getQuestionByHasAnswer(int start, int num, boolean hasAnswer) {
+		return chatDao.queryQuestionByHasAnswer(start, num, hasAnswer);
+	}
+
+	@Override
+	public QuestionDTO getRandQuestionNoAnsExcept(Long qId) {
+		List<Question> questions = chatDao.queryQuestionByHasAnswerExcept(qId,false);
+		int randIndex = (int)(Math.random() * questions.size());
+		return questions.get(randIndex).toDTO();
+	}
+
+	@Override
+	public QuestionDTO getRandAnswersWithAnsExcept(Long qId) {
+		List<Question> questions = chatDao.queryQuestionByHasAnswerExcept(qId,false);
+		Question randQ = questions.get((int) (Math.random() * questions.size()));
+		List<Answer> answers = chatDao.queryAnswerByQuestionId(randQ.getId());
+		QuestionDTO dto = randQ.toDTO();
+		dto.setAnswers(answers);
+		return dto;
 	}
 }

@@ -14,6 +14,7 @@ import com.tinycat.search.IndexHolder;
 import com.tinycat.service.ChatService;
 import com.tinycat.util.JsonUtil;
 import com.tinycat.util.ParamUtils;
+import com.tinycat.util.StringUtil;
 
 /**
  * chat相关处理
@@ -31,9 +32,15 @@ public class ChatController {
 	private void answer(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		String msg = ParamUtils.getParameter(req, "msg");
 		Long userId = ParamUtils.getLongParameter(req, "userId", -1);
+		msg = StringUtil.escapeHtmlTags(msg.trim());
 		
 		String answer = chatService.getAnswer(msg, userId);
 		JsonUtil.outputDTOToJSON(answer, true, resp);
+	}
+
+	@RequestMapping(value = "/test")
+	private void test(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		JsonUtil.outputDTOToJSON(chatService.getAnswerList(), true, resp);
 	}
 	
 	/**
@@ -50,8 +57,8 @@ public class ChatController {
 		IndexHolder holder = IndexHolder.getInstance();
 		//获取所有的answer
 		List<Answer> answerList = chatService.getAnswerList();
-//		holder.optimize(Answer.class);
-//		holder.add(answerList);
+		holder.optimize(Answer.class);
+		holder.add(answerList);
 //		
 		JsonUtil.outputDTOToJSON("success", true, resp);
 	}

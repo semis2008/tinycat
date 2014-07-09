@@ -1,5 +1,7 @@
 package com.tinycat.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.tinycat.pojo.User;
@@ -22,4 +24,14 @@ public interface UserService {
 	Boolean userRegist(HttpServletRequest req);
 
 	boolean updateUserLoginTime(String email);
+	
+	/**
+	 * 
+	  * 获取积分最高的前n个用户
+	  *
+	  * @autor: wn  2014-7-8 上午10:39:11
+	  * @param n
+	  * @return
+	 */
+	List<User> getActiveUsers(int n);
 }

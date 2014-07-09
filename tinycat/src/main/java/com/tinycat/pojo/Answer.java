@@ -12,7 +12,7 @@ public class Answer implements Searchable {
 	
 	private Long id;
 	private Long question_id;
-	private String question_content;
+	private String question;
 	private Long user_id;
 	private String content;
 	private Date create_time;
@@ -30,10 +30,6 @@ public class Answer implements Searchable {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Long getQuestion_id() {
 		return question_id;
 	}
@@ -42,12 +38,13 @@ public class Answer implements Searchable {
 		this.question_id = question_id;
 	}
 
-	public String getQuestion_content() {
-		return question_content;
+	 
+	public String getQuestion() {
+		return question;
 	}
 
-	public void setQuestion_content(String question_content) {
-		this.question_content = question_content;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
 	public Long getUser_id() {
@@ -97,12 +94,12 @@ public class Answer implements Searchable {
 	}
 
 	@Override
-	public long id() {
+	public Long id() {
 		return id;
 	}
 
 	@Override
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

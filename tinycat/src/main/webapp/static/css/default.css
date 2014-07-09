@@ -98,3 +98,6 @@ section:last-child,article:last-child {
 	width: 20px;
 	height: 20px;
 }
+.padding-top-mini{
+	padding-top: 5px;
+}

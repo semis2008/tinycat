@@ -1,5 +1,5 @@
 #banner-head {
-	background: url("../img/bg/head_img04.jpg") repeat scroll 0 0 /cover 
+	background: url("../img/bg/head_img04.jpg") repeat scroll 0 0/cover
 		transparent;
 	color: #FFFFFF;
 	height: 400px;
@@ -22,7 +22,6 @@
 	text-decoration: none;
 }
 
-
 .major span {
 	background: none repeat scroll 0 0 #FFFFFF;
 	color: #6b7770;
@@ -40,24 +39,46 @@
 	top: -23px;
 	left: 10px;
 }
- 
- 
-.changeTopDiary{
+
+.changeTopDiary {
 	position: absolute;
-	width:30px;
-	top:0;
+	width: 30px;
+	top: 0;
 	right: -41px;
 	background: none repeat scroll 0 0 #FFFFFF;
-    box-shadow: 2px 2px 2px 1px rgba(128, 128, 128, 0.3);
-    margin: 0 0 10%;
-    padding: 5px;
-}  
-.clearfix:after {
-    clear: both;
-    content: " ";
-    display: block;
-} 
-p {
-    line-height: 1.4em;
+	box-shadow: 2px 2px 2px 1px rgba(128, 128, 128, 0.3);
+	margin: 0 0 10%;
+	padding: 5px;
 }
- 
+
+.clearfix:after {
+	clear: both;
+	content: " ";
+	display: block;
+}
+
+p {
+	line-height: 1.4em;
+}
+
+#activeUserSec li {
+	position: relative;
+	padding-top: 7px;
+}
+
+#activeUserSec li:HOVER .activeUserName {
+	display: block;
+}
+
+.activeUserName {
+	position: absolute;
+	height: 20px;
+	bottom: 5px;
+	color: white;
+	font-size: 10px;
+	display: none;
+	left: 5px;
+	width: 42px;
+	background-color: black;
+	opacity: 0.8;
+}

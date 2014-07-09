@@ -25,5 +25,5 @@ public interface UserDao {
 	
 	int updateUserLoginTime(String email);
 	
-	
+	List<User> queryUserOrderByPoint(int start,int num);
 }

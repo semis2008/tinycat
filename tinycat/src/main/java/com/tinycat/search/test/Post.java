@@ -47,9 +47,9 @@ public class Post implements Searchable {
 	public int compareTo(Searchable o) {
 		return 0;
 	}
-	public long id() {
+	public Long id() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0l;
 	}
 	public void setId(long id) {
 		// TODO Auto-generated method stub
@@ -78,6 +78,11 @@ public class Post implements Searchable {
 	public List<? extends Searchable> ListAfter(long id, int count) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void setId(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

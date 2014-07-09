@@ -1,6 +1,7 @@
 package com.tinycat.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +44,8 @@ public class UserServiceImpl implements UserService {
 		user.setPhoto(randomPhoto+"");
 		user.setReg_time(new Date());
 		user.setGroup_id(2);
+		user.setLevel(1);
+		user.setPoints(0);
 		user.setStatus(User.STATUS_NORMAL);
 		
 		return userDao.insertUser(user)>0?true:false;
@@ -51,5 +54,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateUserLoginTime(String email) {
 		return userDao.updateUserLoginTime(email)>0?true:false;
+	}
+
+	@Override
+	public List<User> getActiveUsers(int n) {
+		return userDao.queryUserOrderByPoint(0, n);
 	}
 }

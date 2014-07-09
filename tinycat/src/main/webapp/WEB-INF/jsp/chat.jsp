@@ -17,7 +17,7 @@
 					<div class="media">
 						<a href="#" class="pull-left"> <img
 							class="media-object img-polaroid"
-							style="width: 32px; height: 32px;" src="<%=headPath%>/4.jpg">
+							style="width: 32px; height: 32px;" src="<%=headPath%>/tinycat.jpg">
 						</a>
 						<div class="media-body">
 							<blockquote>
@@ -34,16 +34,9 @@
 	<footer class="chat_toolbar_footer">
 		<div class="chat_toolbar">
 			<textarea id="sendMsgText" class="input input_white chat_textarea"></textarea>
-			<shiro:guest>
-			<button class="btn btn-success" id="sendBtn" onclick="sendMsg(0)">
+			<button class="btn btn-success" id="sendBtn" onclick="sendMsg()">
 				<span>发送</span>
 			</button>
-			</shiro:guest>
-			<shiro:user>
-			<button class="btn btn-success" id="sendBtn" onclick="sendMsg(1)" disabled="">
-				<span>发送</span>
-			</button>
-			</shiro:user>			
 		</div>
 	</footer>
 </div>

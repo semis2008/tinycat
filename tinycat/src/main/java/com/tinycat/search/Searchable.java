@@ -18,8 +18,8 @@ public interface Searchable extends Comparable<Searchable> {
      * 文档的唯一编号
      * @return 文档id
      */
-    public long id();
-    public void setId(long id);
+    public Long id();
+    public void setId(Long id);
 
     /**
      * 要存储的字段

@@ -40,6 +40,13 @@ public class UserDaoImpl implements UserDao {
 		String sql = "update user set login_time = now() where email = ?";
 		return dbUtilsTemplate.update(sql, email);
 	}
+
+	@Override
+	public List<User> queryUserOrderByPoint(int start, int num) {
+		String sql = "select * from user order by points desc limit ?,?";
+		Object[] params = { start,num};
+		return dbUtilsTemplate.find(User.class, sql, params);
+	}
 	
 	
 }

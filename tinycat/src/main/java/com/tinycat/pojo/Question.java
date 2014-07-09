@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.tinycat.dto.QuestionDTO;
 import com.tinycat.search.Searchable;
 
 public class Question implements Searchable{
@@ -16,12 +17,19 @@ public class Question implements Searchable{
 	private int weight;
 	private String all_have;
 	
+	public QuestionDTO toDTO() {
+		QuestionDTO dto = new QuestionDTO();
+		dto.setCreate_time(this.getCreate_time());
+		dto.setHas_answer(this.isHas_answer());
+		dto.setId(this.getId());
+		dto.setName(this.getName());
+		dto.setUser_id(this.getUser_id());
+		dto.setWeight(this.getWeight());
+		return dto;
+	}
+	
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -31,8 +39,6 @@ public class Question implements Searchable{
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	 
 
 	public int getWeight() {
 		return weight;
@@ -82,12 +88,12 @@ public class Question implements Searchable{
 	}
 
 	@Override
-	public long id() {
+	public Long id() {
 		return id;
 	}
 
 	@Override
-	public void setId(long id) {
+	public void setId(Long id) {
 
 		this.id = id;
 	}
