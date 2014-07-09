@@ -65,6 +65,7 @@ function changeQuesNoAns(){
 		    	var q = msg.list;
 		    	var qHtml = "<span class=\"label label-info\">"+q.weight+"人问</span>:"+q.name;
 		    	$("#quesNoAns").html(qHtml);
+		    	$("#teachNoAns").val("");
 		    }
 	    }
 	});

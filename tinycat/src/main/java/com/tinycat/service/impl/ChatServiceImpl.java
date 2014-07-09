@@ -97,7 +97,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public QuestionDTO getRandAnswersWithAnsExcept(Long qId) {
-		List<Question> questions = chatDao.queryQuestionByHasAnswerExcept(qId,false);
+		List<Question> questions = chatDao.queryQuestionByHasAnswerExcept(qId,true);
 		Question randQ = questions.get((int) (Math.random() * questions.size()));
 		List<Answer> answers = chatDao.queryAnswerByQuestionId(randQ.getId());
 		QuestionDTO dto = randQ.toDTO();
