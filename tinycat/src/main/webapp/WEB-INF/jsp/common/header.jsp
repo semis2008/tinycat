@@ -11,17 +11,14 @@
 				class="icon-bar"></span> <span class="icon-bar"></span>
 			</a>
 			<div class="brand">
-				&nbsp;&nbsp;&nbsp;&nbsp;Tiny<span class="text-info">Cat</span>&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;帝都<span class="text-info">风云录</span>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav">
 					<li <%if (fun.equals("index")) {%> class="active" <%}%>><a
 						href="<%=contextPath%>/index"><i class="icon-home icon-white"></i>
-							首页</a></li>
-					<li <%if (fun.equals("teach")) {%> class="active" <%}%>><a
-						href="<%=contextPath%>/teach"><i class="icon-magic icon-white"></i>
-							教教我</a></li>
-					<li><a href="<%=contextPath%>/index#aboutSec"><i
+							主页</a></li>
+					<li><a href="<%=contextPath%>/about"><i
 							class="icon-info-sign icon-white"></i> 关于</a></li>
 				</ul>
 				<ul class="nav pull-right">

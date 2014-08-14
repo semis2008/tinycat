@@ -2,8 +2,8 @@
 	background: url("../img/bg/head_img04.jpg") repeat scroll 0 0/cover
 		transparent;
 	color: #FFFFFF;
-	height: 400px;
-	margin-bottom: -270px;
+	height: 550px;
+	margin-bottom: -490px;
 	padding: 40px;
 }
 
@@ -23,14 +23,20 @@
 }
 
 .major span {
-	background: none repeat scroll 0 0 #FFFFFF;
-	color: #6b7770;
+	background: none repeat scroll 0 0 #d7ecf1;
+	font-family:"KaiTi_GB2312";
+	color: #415065;
 	display: inline-block;
 	position: relative;
+	filter: alpha(opacity = 70); /*IE*/
+	-moz-opacity: 0.7; /*Mozilla*/
+	opacity: 0.7; /*FF*/  
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
 }
 
 .major {
-	border-top: 5px solid #E7EAE8;
 	position: relative;
 }
 

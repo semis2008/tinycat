@@ -1,0 +1,9 @@
+#optSec li {
+	margin: 7px;
+	z-index: 10;
+}
+#msgSec .well{
+	height: 350px;
+	overflow-y: auto;
+	background-color: #d7ecf1;
+}

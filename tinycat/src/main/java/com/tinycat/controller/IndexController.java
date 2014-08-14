@@ -44,12 +44,28 @@ public class IndexController {
 	private ModelAndView showIndex(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		setLoginUserDTO(req);
 		// 获取活跃用户，按积分
-		List<User> activeUsers = userService.getActiveUsers(10);
-		// 获取热度最大的问答
-		List<Answer> hotAnswers = chatService.getAnswerOrderByWeight(5);
-		req.setAttribute("activeUsers", activeUsers);
-		req.setAttribute("hotAnswers", hotAnswers);
-		return new ModelAndView("index");
+//		List<User> activeUsers = userService.getActiveUsers(10);
+//		// 获取热度最大的问答
+//		List<Answer> hotAnswers = chatService.getAnswerOrderByWeight(5);
+//		req.setAttribute("activeUsers", activeUsers);
+//		req.setAttribute("hotAnswers", hotAnswers);
+		return new ModelAndView("game");
+	}
+	
+	/**
+	 * 显示主页
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/game")
+	private ModelAndView showGame(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		setLoginUserDTO(req);
+		 
+		
+		return new ModelAndView("game");
 	}
 
 	/**
