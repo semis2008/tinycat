@@ -42,22 +42,6 @@ public class IndexController {
 	}
 	
 	/**
-	 * 显示主页
-	 * 
-	 * @param req
-	 * @param resp
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/game")
-	private ModelAndView showGame(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		setLoginUserDTO(req);
-		 
-		
-		return new ModelAndView("game");
-	}
-
-	/**
 	 * 登陆页
 	 * 
 	 * @param req

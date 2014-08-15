@@ -85,7 +85,6 @@
 		<property name="unauthorizedUrl" value="/unauthorized" />
 		<property name="filterChainDefinitions">
 			<value>
-<!-- 				/index = anon -->
 				/index = authc
 				/game* = authc
 				/game/* = authc

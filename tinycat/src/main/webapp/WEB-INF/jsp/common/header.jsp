@@ -37,9 +37,8 @@
 								${loginUser.name }<b class="caret"></b> </a>
 							<ul class="dropdown-menu">
 								<li><a href="javascript:void(0)"><i
-										class=" icon-flag icon-black"></i> 等级：${loginUser.level }</a></li>
-								<li><a href="javascript:void(0)"><i
-										class=" icon-leaf icon-black"></i> 积分：${loginUser.points }</a></li>
+										class=" icon-flag icon-black"></i> 加入时间：<fmt:formatDate
+											value="${loginUser.reg_time }" type="date" dateStyle="long" /></a></li>
 								<li class="divider"></li>
 								<li><a href="<%=contextPath%>/logout"><i
 										class="icon-off icon-black"></i> 注销</a></li>
@@ -54,12 +53,12 @@
 <input type="hidden" value="<%=contextPath%>" id="contextPath">
 <input type="hidden" value="<%=headPath%>" id="headPath">
 <shiro:guest>
-<input type="hidden" value="-1" id="loginUserId">
+	<input type="hidden" value="-1" id="loginUserId">
 </shiro:guest>
 <shiro:user>
-<input type="hidden" value="${loginUser.id }" id="loginUserId">
-<input type="hidden" value="${loginUser.name }" id="loginUserName">
-<input type="hidden" value="${loginUser.photo }" id="loginUserPhoto">
+	<input type="hidden" value="${loginUser.id }" id="loginUserId">
+	<input type="hidden" value="${loginUser.name }" id="loginUserName">
+	<input type="hidden" value="${loginUser.photo }" id="loginUserPhoto">
 </shiro:user>
 
 
