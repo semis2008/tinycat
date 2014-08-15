@@ -18,10 +18,10 @@
 		fun = "teach";
 	}
 	 
-	String title = "TinyCat | 和你一起成长的Cat";
-	String description = "虚拟的，可学习，可交流的小猫咪。";
-	String author = "偷懒的熊";
-	String keywords = "虚拟角色 java tinycat 人工智能 交互";
+	String title = "帝都风云录 | 多人在线文字类页游";
+	String description = "在虚拟城市--帝都中，创造自己的风云录";
+	String author = "伪冥";
+	String keywords = "文字类 页游 虚拟角色  人工智能 交互";
 	String version = "?v_1.0.0";
 	String staticPath = contextPath + "/static";
 	String headPath = staticPath + "/img/head";

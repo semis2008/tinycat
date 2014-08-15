@@ -96,11 +96,20 @@ public class UserController {
 			JsonUtil.outputDTOToJSON("验证码错误", false, resp);
 			return;
 		}
+		boolean hasNameAlready = userService.hasNameAlready(req.getParameter("name"));
+		if(hasNameAlready) {
+			JsonUtil.outputDTOToJSON("注册失败,用户名已被注册", false, resp);
+			return;			
+		}
+		
 		boolean result = userService.userRegist(req);
-		if(result)
+		if(result) {
 			JsonUtil.outputDTOToJSON("注册成功", result, resp);
-		else
+			return;
+		}else {
 			JsonUtil.outputDTOToJSON("注册失败", result, resp);
+			return;
+		}
 	}
 
 }

@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="span12">
 			&copy;
-			<%=ICP_BEIAN%>. <span class="right">Author : <a href="#">偷懒的熊</a>
+			<%=ICP_BEIAN%>. <span class="right">Author : <a href="#"><%=author %></a>
 				&nbsp;&nbsp;|&nbsp;&nbsp; Phone : 1581 0112 386 Email : <a
 				href="javascript:void(0)">semis2008@126.com</a>
 			</span>

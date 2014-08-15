@@ -15,8 +15,6 @@ public class User {
 	private Date reg_time;
 	private Date login_time;
 	private int group_id;
-	private int level;
-	private int points;
 	private String status;
 
 	public Long getId() {
@@ -53,22 +51,6 @@ public class User {
 
 	public String getPassword() {
 		return password;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
 	}
 
 	public void setPassword(String password) {

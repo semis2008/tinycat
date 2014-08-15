@@ -42,10 +42,16 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> queryUserOrderByPoint(int start, int num) {
-		String sql = "select * from user order by points desc limit ?,?";
+	public List<User> queryUserOrderByCreateTime(int start, int num) {
+		String sql = "select * from user order by reg_time desc limit ?,?";
 		Object[] params = { start,num};
 		return dbUtilsTemplate.find(User.class, sql, params);
+	}
+
+	@Override
+	public boolean checkHasName(String name) {
+		String sql = "select * from user where name =? limit 0,1";
+		return dbUtilsTemplate.find(User.class, sql, name)==null?false:true;
 	}
 	
 	

@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean userRegist(HttpServletRequest req) {
+	public boolean userRegist(HttpServletRequest req) {
 		String email = (String) req.getParameter("email");
 		String name = (String) req.getParameter("name");
 		String password = (String) req.getParameter("password");
@@ -44,8 +44,6 @@ public class UserServiceImpl implements UserService {
 		user.setPhoto(randomPhoto+"");
 		user.setReg_time(new Date());
 		user.setGroup_id(2);
-		user.setLevel(1);
-		user.setPoints(0);
 		user.setStatus(User.STATUS_NORMAL);
 		
 		return userDao.insertUser(user)>0?true:false;
@@ -58,6 +56,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getActiveUsers(int n) {
-		return userDao.queryUserOrderByPoint(0, n);
+		return userDao.queryUserOrderByCreateTime(0, n);
+	}
+
+	@Override
+	public boolean hasNameAlready(String name) {
+		return userDao.checkHasName(name);
 	}
 }

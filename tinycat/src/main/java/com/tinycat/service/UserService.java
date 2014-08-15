@@ -21,8 +21,18 @@ public interface UserService {
 	 */
 	User getUserByName(String name);
 	
-	Boolean userRegist(HttpServletRequest req);
+	boolean userRegist(HttpServletRequest req);
 
+	/**
+	 * 
+	  * 检查是否存在姓名
+	  *
+	  * @autor: wn  2014-8-15 上午10:39:06
+	  * @param name
+	  * @return
+	 */
+	boolean hasNameAlready(String name);
+	
 	boolean updateUserLoginTime(String email);
 	
 	/**

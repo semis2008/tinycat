@@ -10,8 +10,6 @@ public class UserDTO {
 	private String email;
 	private String photo;
 	private Date reg_time;
-	private int level;
-	private int points;
 
 	public static UserDTO init(User user) {
 		UserDTO dto = new UserDTO();
@@ -22,8 +20,6 @@ public class UserDTO {
 		dto.setName(user.getName());
 		dto.setPhoto(user.getPhoto());
 		dto.setReg_time(user.getReg_time());
-		dto.setLevel(user.getLevel());
-		dto.setPoints(user.getPoints());
 		return dto;
 	}
 
@@ -67,19 +63,4 @@ public class UserDTO {
 		this.reg_time = reg_time;
 	}
 
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
-	}
 }

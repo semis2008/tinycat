@@ -25,5 +25,7 @@ public interface UserDao {
 	
 	int updateUserLoginTime(String email);
 	
-	List<User> queryUserOrderByPoint(int start,int num);
+	List<User> queryUserOrderByCreateTime(int start,int num);
+	
+	boolean checkHasName(String name);
 }
