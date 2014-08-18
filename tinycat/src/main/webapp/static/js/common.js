@@ -126,16 +126,4 @@ function userRegist() {
 		    }
 	    }
 	});
-}
-function showErrorMsg(msg) {
-	var msgD = $.globalMessenger().post({
-	    message: msg,
-	    type: 'error'
-	});
-}
-function showSuccessMsg(msg) {
-	var msgD = $.globalMessenger().post({
-	    message: msg,
-	    type: 'success'
-	});
-}
+} 

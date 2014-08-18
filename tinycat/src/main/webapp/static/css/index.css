@@ -23,9 +23,9 @@
 }
 
 .major span {
-	background: none repeat scroll 0 0 #d7ecf1;
+	background: none repeat scroll 0 0 #191919;
 	font-family:"KaiTi_GB2312";
-	color: #415065;
+	color: silver;
 	display: inline-block;
 	position: relative;
 	filter: alpha(opacity = 70); /*IE*/

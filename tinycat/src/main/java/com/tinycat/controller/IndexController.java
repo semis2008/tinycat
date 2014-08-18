@@ -38,7 +38,7 @@ public class IndexController {
 	private ModelAndView showIndex(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		setLoginUserDTO(req);
  
-		return new ModelAndView("game");
+		return new ModelAndView("index");
 	}
 	
 	/**
