@@ -137,7 +137,7 @@ a:hover,a:focus {
 	height: auto;
 	padding: 100px 0;
 	text-align: center;
-	color: #fff;
+	color: #d4f2e8;
 	background-color: #000;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -556,4 +556,28 @@ body {
 	background-color: #219ab3;
 	margin: 5px;
 	cursor: default;
+}
+
+#contact{
+	background-color: #a3e2c5;
+	padding: 40px 0 60px;
+	color: #424b50;	
+}
+
+p#free-title {
+    color: #333;
+    font-size: 2.375rem;
+    letter-spacing: 1px;
+    line-height: 38px;
+    margin-top: 30px;
+}
+#free-description {
+    color: #555;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+footer{
+	padding: 20px;
+	margin-top: 100px;
 }

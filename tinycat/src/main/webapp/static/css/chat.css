@@ -29,6 +29,15 @@
 	margin-top: 15px;
 	padding: 10px;	
 }
+.online-users a:HOVER{
+	background-color: #428bca;
+    border-color: #428bca;
+    color: #fff;
+    z-index: 2;
+}
 .panel-heading{
 	border-bottom: 1px solid #ccc;
 } 
+.input-bar{
+	margin-top: 20px;
+}
