@@ -5,25 +5,36 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-
-<div class="panel chat-panel">
-	<header class="panel_header">
-		<h3 class="">Tiny Cat</h3>
-	</header>
-	<div class="panel_body_container">
+<div class="row panel">
+  <div class="panel-heading">影视剧 <i class="fa fa-angle-double-right"></i> 房间名113zad</div>
+  <div class="panel-body">
+	<div class="col-lg-9">
 		<div class="chat_container" id="chat_window">
-			<ul id="chat_content" class="unstyled">
+			<ul id="chat_content" class="list-unstyled">
 				<li>
 					<div class="media">
 						<a href="#" class="pull-left"> <img
 							class="media-object img-polaroid"
-							style="width: 32px; height: 32px;" src="<%=headPath%>/tinycat.jpg">
+							style="width: 32px; height: 32px;"
+							src="<%=headPath%>/tinycat.jpg">
 						</a>
 						<div class="media-body">
 							<blockquote>
-								<p class="">我是 tinyCat,快来和我说说话啊~</p>
-								<small>TinyCat <em><fmt:formatDate value="<%=now %>"
-													type="time" dateStyle="short" /></em></small>
+								<span>这个电视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样....</span>
+							</blockquote>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="media">
+						<a href="#" class="pull-right"> <img
+							class="media-object img-polaroid"
+							style="width: 32px; height: 32px;"
+							src="<%=headPath%>/tinycat.jpg">
+						</a>
+						<div class="media-body">
+							<blockquote class="blockquote-reverse"> 
+								<span>是啊是啊，浪费我时间</span>
 							</blockquote>
 						</div>
 					</div>
@@ -31,12 +42,21 @@
 			</ul>
 		</div>
 	</div>
-	<footer class="chat_toolbar_footer">
-		<div class="chat_toolbar">
-			<textarea id="sendMsgText" class="input input_white chat_textarea"></textarea>
-			<button class="btn btn-success" id="sendBtn" onclick="sendMsg()">
-				<span>发送</span>
-			</button>
+	<div class="col-lg-3">
+		<div class="list-group online-users">
+			<a href="javascript:void(0)" class="list-group-item disabled"> 在线用户</a> <a
+				href="#" class="list-group-item active">Dapibus ac facilisis in</a> <a
+				href="#" class="list-group-item">Morbi leo risus</a> <a href="#"
+				class="list-group-item">Porta ac consectetur ac</a> <a href="#"
+				class="list-group-item">Vestibulum at eros</a>
 		</div>
-	</footer>
+
+	</div>
+	<div class="col-lg-12">
+		<textarea id="sendMsgText" class="input input_white chat_textarea"></textarea>
+		<button class="btn btn-success" id="sendBtn" onclick="sendMsg()">
+			<span>发送</span>
+		</button>
+	</div>
+	</div>	
 </div>

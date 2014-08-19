@@ -18,7 +18,7 @@
 		fun = "teach";
 	}
 	 
-	String title = "VTalk | 实时聊天平台";
+	String title = "WANTalk | 实时聊天平台";
 	String description = "在动态变化的房间中，选一个，参与，并分享";
 	String author = "偷懒的熊";
 	String keywords = "聊天 java 房间";
