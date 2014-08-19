@@ -18,10 +18,10 @@
 		fun = "teach";
 	}
 	 
-	String title = "帝都风云录 | 多人在线文字类页游";
-	String description = "在虚拟城市--帝都中，创造自己的风云录";
-	String author = "伪冥";
-	String keywords = "文字类 页游 虚拟角色  人工智能 交互";
+	String title = "VTalk | 实时聊天平台";
+	String description = "在动态变化的房间中，选一个，参与，并分享";
+	String author = "偷懒的熊";
+	String keywords = "聊天 java 房间";
 	String version = "?v_1.0.0";
 	String staticPath = contextPath + "/static";
 	String headPath = staticPath + "/img/head";
