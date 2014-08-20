@@ -20,12 +20,13 @@ public interface UserDao {
 	 * @return 用户实体类
 	 */
 	User queryUserByEmail(String email);
- 
+	
+	User queryUserByName(String name);
+	
 	int insertUser(User user);
 	
 	int updateUserLoginTime(String email);
 	
 	List<User> queryUserOrderByCreateTime(int start,int num);
 	
-	boolean checkHasName(String name);
 }

@@ -35,95 +35,121 @@ function getStringLimit(Str, Limit) {
 	return returnValue;
 }
 
-// 用户相关
-function userLogin() {
-	var email = $("#inputEmail").val();
-	var pass = $("#inputPassword").val();
-	// 非空验证
-	if (email == "") {
-		showErrorMsg("邮箱不能为空！");
-		return;
-	}
-	if (pass == "") {
-		showErrorMsg("密码不能为空！");
-		return;
+function check_login() {
+	var email = $("#login_email").val();
+	var password = $("#login_password").val();
+	var correct = 1;
+	if($.trim(email)==""||$.trim(password)=="") {
+		correct=0;
 	}
 	// 验证邮箱格式
 	var emailRegExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
 	if (!emailRegExp.test(email) || email.indexOf('.') == -1) {
-		showErrorMsg("您输入的邮箱格式不正确！");
-		return;
+		correct=0;
 	}
+    if (correct==1) {
+    	$("#lockbtn_login").animate({ left: '260px' , duration: 'slow'});;
+    	$("#loginbtn").animate({ left: '0' , duration: 'slow'});;
+    }
+}
+
+function check_regist() {
+	var email = $("#regist_email").val();
+	var username = $("#regist_username").val();
+	var password = $("#regist_password").val();
+	var correct = 1;
+	if($.trim(email)==""||$.trim(password)==""||$.trim(username)=="") {
+		correct=0;
+	}
+	// 验证邮箱格式
+	var emailRegExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+	if (!emailRegExp.test(email) || email.indexOf('.') == -1) {
+		correct=0;
+	}
+    if (correct==1) {
+    	$("#lockbtn_regist").animate({ left: '260px' , duration: 'slow'});;
+    	$("#registbtn").animate({ left: '0' , duration: 'slow'});;
+    }
+}
+
+
+$("#loginbtn").click(function(){
+	$('#loading_login').removeClass('hidden');
+	var email = $.trim($("#login_email").val());
+	var password = $.trim($("#login_password").val());
 	var path = $("#contextPath").val();
+	
+	if($.trim(email)==""||$.trim(password)=="") {
+		showLoginErrorTip("登陆项不能为空");
+	}
+	// 验证邮箱格式
+	var emailRegExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+	if (!emailRegExp.test(email) || email.indexOf('.') == -1) {
+		showLoginErrorTip("邮箱格式不正确");
+	}
 	// 异步登录
 	$.ajax({
 	    type: "POST",
 	    url: path + "/user/login",
 	    data: {
 	        email: email,
-	        password: pass
+	        password: password
 	    },
 	    dataType: "json",
 	    success: function(msg) {
+	    	$('#loading_login').addClass('hidden');
 		    if (msg.success) {
 			    location.href = path + "/index";
+		    }else{
+		    	showLoginErrorTip(msg.list);
 		    }
 	    }
 	});
+});
 
-}
-
-function userRegist() {
-	var email = $.trim($("#inputEmail").val());
-	var name = $.trim($("#inputName").val());
-	var pass = $.trim($("#inputPassword").val());
-	var pass_con = $.trim($("#inputPasswordCon").val());
-	var randCode = $("#inputRandCode").val();
+$("#registbtn").click(function(){
+	$('#loading_regist').removeClass('hidden');
+	var email = $("#regist_email").val();
+	var username = $("#regist_username").val();
+	var password = $("#regist_password").val();
 	var path = $("#contextPath").val();
-	// 非空验证
-	if (email == "") {
-		showErrorMsg("邮箱不能为空！");
-		return;
-	}
-	if (name == "") {
-		showErrorMsg("昵称不能为空！");
-		return;
-	}
-	if (pass == "") {
-		showErrorMsg("密码不能为空！");
-		return;
-	}
-	if (pass_con == "") {
-		showErrorMsg("确认密码不能为空！");
-		return;
+	
+	if($.trim(email)==""||$.trim(password)==""||$.trim(username)=="") {
+		showRegistErrorTip("注册项不能为空");
 	}
 	// 验证邮箱格式
 	var emailRegExp = new RegExp("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
 	if (!emailRegExp.test(email) || email.indexOf('.') == -1) {
-		showErrorMsg("您输入的邮箱格式不正确！");
-		return;
+		showRegistErrorTip("邮箱格式不正确");
 	}
-	// 验证密码
-	if (pass != pass_con) {
-		showErrorMsg("密码不一致！");
-		return;
-	}
+	
 	$.ajax({
 	    type: "POST",
 	    url: path + "/user/regist",
 	    data: {
 	        email: email,
-	        password: pass,
-	        name: name,
-	        randCode: randCode
+	        password: password,
+	        name: username
 	    },
 	    dataType: "json",
 	    success: function(msg) {
+	    	$('#loading_regist').addClass('hidden');
 		    if (msg.success) {
 			    window.location.href = path + "/index";
 		    } else {
-			    showErrorMsg(msg.list);
+		    	showRegistErrorTip(msg.list);
 		    }
 	    }
 	});
-} 
+});
+
+function showLoginErrorTip(msg) {
+	$('#login-error-tip').removeClass('hidden');
+	$("#login-error-tip span").text(msg.list);
+}
+
+function showRegistErrorTip(msg) {
+	$('#regist-error-tip').removeClass('hidden');
+	$("#regist-error-tip span").text(msg.list);
+}
+ 

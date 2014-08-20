@@ -27,6 +27,12 @@ public class UserDaoImpl implements UserDao {
 		String sql = "select * from user where email = ?";
 		return dbUtilsTemplate.findFirst(User.class, sql, email);
 	}
+	
+	@Override
+	public User queryUserByName(String name) {
+		String sql = "select * from user where name = ?";
+		return dbUtilsTemplate.findFirst(User.class, sql, name);
+	}
 
 	@Override
 	public int insertUser(User user) {
@@ -48,11 +54,4 @@ public class UserDaoImpl implements UserDao {
 		return dbUtilsTemplate.find(User.class, sql, params);
 	}
 
-	@Override
-	public boolean checkHasName(String name) {
-		String sql = "select * from user where name =? limit 0,1";
-		return dbUtilsTemplate.find(User.class, sql, name)==null?false:true;
-	}
-	
-	
 }

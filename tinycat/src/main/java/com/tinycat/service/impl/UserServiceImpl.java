@@ -61,6 +61,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean hasNameAlready(String name) {
-		return userDao.checkHasName(name);
+		User u = userDao.queryUserByName(name);
+		if(u!=null) 
+			return true;
+		return false;
 	}
 }

@@ -72,7 +72,7 @@ public class UserController {
 			JsonUtil.outputDTOToJSON("账户被锁定", false, resp);
 			return;
 		} catch (AuthenticationException ae) {
-			JsonUtil.outputDTOToJSON("授权失败", false, resp);
+			JsonUtil.outputDTOToJSON("账号不存在", false, resp);
 			return;
 		}
 		//更新用户登录时间
@@ -91,11 +91,6 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/regist")
 	private void regist(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		String randCode = (String) req.getParameter("randCode");
-		if(!randCode.equals(WebUtil.getRandCode(req))) {
-			JsonUtil.outputDTOToJSON("验证码错误", false, resp);
-			return;
-		}
 		boolean hasNameAlready = userService.hasNameAlready(req.getParameter("name"));
 		if(hasNameAlready) {
 			JsonUtil.outputDTOToJSON("注册失败,用户名已被注册", false, resp);
