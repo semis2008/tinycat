@@ -738,4 +738,28 @@ footer {
 .head_photo_20{
 	width: 20px;
 	height: 20px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+}
+.head_photo_100{
+	width: 100px;
+	height: 100px;
+	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+	border-radius:30px;
+	border: 3px solid #219ab3;
+	
+}
+
+.InfoUserName {
+	position:absolute;
+	top:60px;
+	margin-left:-100px;
+	height: 40px;
+	color: white;
+	font-size: 22px;
+	width: 100px;
+	background-color: black;
+	opacity: 0.6;
+	border-radius:0 0 30px 30px;
 }

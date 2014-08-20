@@ -22,6 +22,7 @@ $(function() {
 	//注册按钮事件
 	registBtnAction();
 	
+	$('.tip').tooltip('hide');
 });
 
 
