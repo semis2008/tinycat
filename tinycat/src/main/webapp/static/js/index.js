@@ -1,3 +1,4 @@
+var path = $("#contextPath").val();
 $(window).scroll(function() {
 	if ($(".navbar").offset().top > 50) {
 		$(".navbar-fixed-top").addClass("top-nav-collapse");
@@ -29,6 +30,8 @@ $(function() {
 function registBtnAction() {
 	$("#login-row").hide();
 	$("#regist-row").hide();
+	$("#show-edit-name").hide();
+	$(".edit-name").hide();
 	//登陆页展示
 	$("#show-login-btn").click(function(){
 		$("#login-info-row").fadeOut(500,function(){
@@ -53,8 +56,18 @@ function registBtnAction() {
 			$("#login-info-row").fadeIn(500);	
 		});
 	});
-
-	
+	//修改头像
+	$("#change_photo").click(function(){
+		changePhoto();
+	});
+	//显示修改昵称
+	$("#change_name").click(function(){
+		toggleChangeName();
+	});
+	//修改昵称
+	$("#new-name-btn").click(function(){
+		changeName();
+	});
 	
 }
 
@@ -73,9 +86,63 @@ function randomBG() {
 	
 }
 
+function changePhoto() {
+	var userId = $("#loginUserId").val();
+	if(userId==-1) 
+		return;
+	
+	
+	$.ajax({
+	    type: "POST",
+	    url: path + "/user/changephoto",
+	    data: {
+	        userId: userId
+	    },
+	    dataType: "json",
+	    success: function(msg) {
+		    if (msg.success) {
+		    	var newPhoto = msg.list;
+		    	var headPath = $("#headPath").val();
+		    	$(".head_photo_20").attr("src",headPath+"/"+newPhoto+".jpg");
+		    	$(".head_photo_100").attr("src",headPath+"/"+newPhoto+".jpg");
+		    }
+	    }
+	});
+}
+
 function getRandomInt(start,end) {
 	var rn=Math.random()*(end-start+1)-1;
 	var num=start + Math.ceil(rn);
 	return num;
 }
 
+function toggleChangeName() {
+	$("#hide-edit-name").toggle();
+	$("#show-edit-name").toggle();
+	 $(".edit-name").slideToggle("slow");
+}
+
+function changeName() {
+	var userId = $("#loginUserId").val();
+	if(userId==-1) 
+		return;
+	var newName = $.trim($("#new-name-text").val());
+	if(newName=="")
+		return;
+	$.ajax({
+	    type: "POST",
+	    url: path + "/user/changename",
+	    data: {
+	        userId: userId,
+	        name: newName
+	    },
+	    dataType: "json",
+	    success: function(msg) {
+		    if (msg.success) {
+		    	$(".InfoUserName").text(newName);
+		    	$("#head-user-name").text(newName);
+		    	$("#new-name-text").val("");
+		    }
+	    }
+	});
+}

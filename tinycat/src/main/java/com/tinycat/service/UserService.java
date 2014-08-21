@@ -35,6 +35,10 @@ public interface UserService {
 	
 	boolean updateUserLoginTime(String email);
 	
+	String changeUserPhoto(Long userId);
+	
+	boolean changeUserName(Long userId,String name);
+	
 	/**
 	 * 
 	  * 获取积分最高的前n个用户

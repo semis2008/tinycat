@@ -66,4 +66,19 @@ public class UserServiceImpl implements UserService {
 			return true;
 		return false;
 	}
+
+	@Override
+	public String changeUserPhoto(Long userId) {
+		Integer randomPhoto = (int) (Math.random()*User.PHOTO_SCOPE+1);
+		if(userDao.updateUserPhoto(userId,randomPhoto+"")>0) {
+			return randomPhoto+"";
+		}else {
+			return "";
+		}
+	}
+
+	@Override
+	public boolean changeUserName(Long userId, String name) {
+		return userDao.updateUserName(userId,name)>0?true:false;
+	}
 }

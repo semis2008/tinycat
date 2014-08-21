@@ -30,6 +30,7 @@ import com.tinycat.pojo.User;
 import com.tinycat.service.UserService;
 import com.tinycat.util.DateUtil;
 import com.tinycat.util.JsonUtil;
+import com.tinycat.util.ParamUtils;
 import com.tinycat.util.StringUtil;
 import com.tinycat.util.WebUtil;
 
@@ -103,6 +104,60 @@ public class UserController {
 			return;
 		}else {
 			JsonUtil.outputDTOToJSON("注册失败", result, resp);
+			return;
+		}
+	}
+	
+	/**
+	 * 更换头像
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/changephoto")
+	private void changePhoto(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
+		
+		if(userId==0l) {
+			JsonUtil.outputDTOToJSON("参数错误", false, resp);
+			return;			
+		}
+		String newPhoto = userService.changeUserPhoto(userId);
+		if(newPhoto.equals("")) {
+			JsonUtil.outputDTOToJSON("出错了", false, resp);
+			return;
+		}else {
+			JsonUtil.outputDTOToJSON(newPhoto, true, resp);
+			return;
+		}
+	}
+	
+	/**
+	 * 编辑昵称
+	 * 
+	 * @param req
+	 * @param resp
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/changename")
+	private void changeName(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
+		String name = ParamUtils.getParameter(req, "name");
+		
+		if(userId==0l||"".equals(name)) {
+			JsonUtil.outputDTOToJSON("参数错误", false, resp);
+			return;			
+		}
+		
+		boolean result = userService.changeUserName(userId,name);
+		if(result) {
+			JsonUtil.outputDTOToJSON("", true, resp);
+			return;
+		}else {
+			JsonUtil.outputDTOToJSON("出错了", false, resp);
 			return;
 		}
 	}

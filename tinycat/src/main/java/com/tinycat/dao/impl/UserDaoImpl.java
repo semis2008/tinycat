@@ -54,4 +54,18 @@ public class UserDaoImpl implements UserDao {
 		return dbUtilsTemplate.find(User.class, sql, params);
 	}
 
+	@Override
+	public int updateUserPhoto(Long userId, String photo) {
+		String sql = "update user set photo = ? where id = ?";
+		Object[] params = { photo,userId};
+		return dbUtilsTemplate.update(sql, params);
+	}
+
+	@Override
+	public int updateUserName(Long userId, String name) {
+		String sql = "update user set name = ? where id = ?";
+		Object[] params = { name,userId};
+		return dbUtilsTemplate.update(sql, params);
+	}
+
 }

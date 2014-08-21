@@ -27,6 +27,10 @@ public interface UserDao {
 	
 	int updateUserLoginTime(String email);
 	
+	int updateUserName(Long userId,String name);
+	
+	int updateUserPhoto(Long userId,String photo);
+	
 	List<User> queryUserOrderByCreateTime(int start,int num);
 	
 }

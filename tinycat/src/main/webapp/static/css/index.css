@@ -763,3 +763,11 @@ footer {
 	opacity: 0.6;
 	border-radius:0 0 30px 30px;
 }
+.edit-name{
+	border: 1px solid #219ab3;
+	color: #219ab3;
+	background-color: transparent;
+	margin-top: 15px;
+	padding: 15px;
+	position:relative; 
+} 
