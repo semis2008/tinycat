@@ -32,6 +32,7 @@ function registBtnAction() {
 	$("#regist-row").hide();
 	$("#show-edit-name").hide();
 	$(".edit-name").hide();
+	$("#new-room-div").hide();
 	//登陆页展示
 	$("#show-login-btn").click(function(){
 		$("#login-info-row").fadeOut(500,function(){
@@ -68,6 +69,10 @@ function registBtnAction() {
 	$("#new-name-btn").click(function(){
 		changeName();
 	});
+	$(".addRoom").click(function(){
+		 $("#new-room-div").fadeToggle("slow");
+	});
+	
 	
 }
 
@@ -81,7 +86,7 @@ function randomBG() {
 	$(".intro").addClass("bg-intro-0"+introIndex);
 	var midIndex = getRandomInt(0, 4);
 	$(".mid-section").addClass("mid-bg-0"+midIndex);
-	var midIndex = getRandomInt(0, 1);
+	var midIndex = getRandomInt(0, 2);
 	$("#login").addClass("login-bg-0"+midIndex);
 	
 }

@@ -279,9 +279,9 @@ a:hover,a:focus {
 		padding: 100px 0;
 	}
 	#contact {
-        height: 400px;
-        margin-top: 250px;
-    }
+		height: 400px;
+		margin-top: 250px;
+	}
 }
 
 @
@@ -299,11 +299,15 @@ a:hover,a:focus {
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -314,8 +318,12 @@ scale
 
 
 
+
+
 (1
 .2
+
+
 
 
 
@@ -330,11 +338,15 @@ transform
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -345,8 +357,12 @@ scale
 
 
 
+
+
 (1
 .2
+
+
 
 
 
@@ -364,7 +380,10 @@ scale
 
 
 
+
+
 :
+
 
 
 
@@ -372,7 +391,10 @@ scale
 
 
 
+
 scale
+
+
 
 
 
@@ -387,7 +409,10 @@ transform
 
 
 
+
+
 :
+
 
 
 
@@ -395,7 +420,10 @@ transform
 
 
 
+
 scale
+
+
 
 
 
@@ -420,11 +448,15 @@ scale
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -435,8 +467,12 @@ scale
 
 
 
+
+
 (1
 .2
+
+
 
 
 
@@ -451,11 +487,15 @@ transform
 
 
 
+
+
 :
 
 
 
+
  
+
 
 
 
@@ -466,8 +506,12 @@ scale
 
 
 
+
+
 (1
 .2
+
+
 
 
 
@@ -485,7 +529,10 @@ scale
 
 
 
+
+
 :
+
 
 
 
@@ -493,7 +540,10 @@ scale
 
 
 
+
 scale
+
+
 
 
 
@@ -508,7 +558,10 @@ transform
 
 
 
+
+
 :
+
 
 
 
@@ -516,7 +569,10 @@ transform
 
 
 
+
 scale
+
+
 
 
 
@@ -619,23 +675,30 @@ body {
 }
 
 #login {
-	border-top:200px solid black;
+	border-top: 200px solid black;
 	color: #424b50;
 	padding: 100px 0 100px;
 	margin-top: 400px;
 }
 
-.login-bg-00{
+.login-bg-00 {
 	background: url(../img/bg/login-bg-00.jpg) no-repeat bottom center
 		scroll;
 }
-.login-bg-01{
+
+.login-bg-01 {
 	background: url(../img/bg/login-bg-01.jpg) no-repeat bottom center
 		scroll;
 }
 
+.login-bg-02 {
+	background: url(../img/bg/login-bg-02.jpg) no-repeat bottom center
+		scroll;
+	color: white;
+}
+
 p#free-title {
-	color: #333;
+	color: #222;
 	font-size: 2.375rem;
 	letter-spacing: 1px;
 	line-height: 38px;
@@ -658,7 +721,7 @@ footer {
 	border: 2px solid grey;
 	border-radius: 2px;
 }
- 
+
 .bigicon {
 	font-size: 97px;
 	color: grey;
@@ -735,39 +798,65 @@ footer {
 	position: absolute;
 	top: 0;
 }
-.head_photo_20{
+
+.head_photo_20 {
 	width: 20px;
 	height: 20px;
-	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
-.head_photo_100{
+
+.head_photo_100 {
 	width: 100px;
 	height: 100px;
-	-moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-	-webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-	box-shadow: 0px 5px 10px rgba(0,0,0,0.3);
-	border-radius:30px;
+	-moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+	border-radius: 30px;
 	border: 3px solid #219ab3;
-	
 }
 
 .InfoUserName {
-	position:absolute;
-	top:60px;
-	margin-left:-100px;
+	position: absolute;
+	top: 60px;
+	margin-left: -100px;
 	height: 40px;
 	color: white;
 	font-size: 22px;
 	width: 100px;
 	background-color: black;
 	opacity: 0.6;
-	border-radius:0 0 30px 30px;
+	border-radius: 0 0 30px 30px;
 }
-.edit-name{
+
+.edit-name {
 	border: 1px solid #219ab3;
 	color: #219ab3;
 	background-color: transparent;
 	margin-top: 15px;
 	padding: 15px;
-	position:relative; 
-} 
+	position: relative;
+}
+
+.new-room {
+	border: 1px solid #219ab3;
+	color: #219ab3;
+	background-color: transparent;
+	margin-top: 60px;
+	padding: 10px;
+	position: relative;
+}
+
+.new-room input{
+	border: 1px solid #219ab3;
+	color: #219ab3;
+	background-color: transparent;
+}
+
+.styled-select select {
+	background: transparent;
+	padding: 5px;
+	font-size: 16px;
+	border: 1px solid #219ab3;
+	height: 34px;
+	-webkit-appearance: none; /*for chrome*/
+}
