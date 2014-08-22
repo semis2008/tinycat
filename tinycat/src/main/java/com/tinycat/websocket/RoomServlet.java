@@ -14,7 +14,7 @@ import org.apache.catalina.websocket.WsOutbound;
 import com.google.gson.Gson;
 import com.tinycat.dto.Msg;
 
-public class DemoServlet extends WebSocketServlet {
+public class RoomServlet extends WebSocketServlet {
 
     private static final long serialVersionUID = -4853540828121130946L;
     private static ArrayList mmiList = new ArrayList();

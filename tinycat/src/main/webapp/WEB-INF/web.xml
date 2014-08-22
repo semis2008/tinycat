@@ -34,12 +34,12 @@
 	</servlet-mapping>
 	<!-- WebSocket -->
 	<servlet>
-		<servlet-name>wsServlet</servlet-name>
-		<servlet-class>com.tinycat.websocket.DemoServlet</servlet-class>
+		<servlet-name>roomServlet</servlet-name>
+		<servlet-class>com.tinycat.websocket.RoomServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>wsServlet</servlet-name>
-		<url-pattern>/wsServlet</url-pattern>
+		<servlet-name>roomServlet</servlet-name>
+		<url-pattern>/roomServlet</url-pattern>
 	</servlet-mapping>
 
 	<filter>
