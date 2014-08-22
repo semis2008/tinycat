@@ -25,9 +25,10 @@ function WSonOpen() {
 
 function WSonMessage(event) {
 	// 接收到消息之后，动态更新房间列表
-	var message = JSON.parse(event.data);
+	var msg = JSON.parse(event.data);
 
-	Log(message.msg, message.type, message.area);
+	alert(msg.action);
+	 
 };
 
 function WSonClose() {

@@ -141,7 +141,8 @@ function addRoom() {
 	    dataType: "json",
 	    success: function(msg) {
 		    if (msg.success) {
-		    	location.href = path+"/index#talk";
+		    	//更新聊天窗口信息
+		    	
 		    }else {
 		    	alert(msg.list);
 		    }

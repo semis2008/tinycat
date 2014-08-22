@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.tinycat.dto.Room;
+import com.tinycat.dto.RoomMsg;
+import com.tinycat.websocket.RoomServlet;
 
 public class TalkUtil {
 	private static Map<String,Room> NEWS_ROOM = new HashMap<String, Room>();
@@ -32,6 +34,13 @@ public class TalkUtil {
 		}else if(type.equals(RoomType.LIFE)) {
 			return addRoomWithType(LIFE_ROOM,room);
 		}
+		//提醒前端更新
+		RoomMsg msg = new RoomMsg();
+		msg.setAction("add");
+		msg.setRoomName(room.getName());
+		msg.setRoomType(type);
+		RoomServlet.sendMessage(msg);
+		
 		return ReturnType.SUCCESS;
 	}
 
