@@ -57,8 +57,8 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/login")
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		String email = (String) req.getParameter("email");
-		String password = (String) req.getParameter("password");
+		String email = ParamUtils.getParameter(req, "email");
+		String password = ParamUtils.getParameter(req, "password");
 		// 1. 接受提交的当事人和证书：
 		AuthenticationToken token = new UsernamePasswordToken(email, StringUtil.passEncrypt(password));
 		// 2. 获取当前Subject：
@@ -92,7 +92,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/regist")
 	private void regist(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		boolean hasNameAlready = userService.hasNameAlready(req.getParameter("name"));
+		boolean hasNameAlready = userService.hasNameAlready(ParamUtils.getParameter(req, "name"));
 		if(hasNameAlready) {
 			JsonUtil.outputDTOToJSON("注册失败,用户名已被注册", false, resp);
 			return;			

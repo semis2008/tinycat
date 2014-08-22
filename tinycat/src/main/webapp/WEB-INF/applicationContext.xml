@@ -86,8 +86,8 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/index = anon
-				/game* = authc
-				/game/* = authc
+				/room* = authc
+				/room/* = authc
 				/logout = logout
 			</value>
 		</property>

@@ -21,6 +21,8 @@ public interface UserService {
 	 */
 	User getUserByName(String name);
 	
+	User getUserById(Long userId);
+	
 	boolean userRegist(HttpServletRequest req);
 
 	/**

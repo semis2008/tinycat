@@ -69,8 +69,13 @@ function registBtnAction() {
 	$("#new-name-btn").click(function(){
 		changeName();
 	});
+	//显示添加房间
 	$(".addRoom").click(function(){
 		 $("#new-room-div").fadeToggle("slow");
+	});
+	//添加房间
+	$("#add-room-btn").click(function(){
+		addRoom();
 	});
 	
 	
@@ -110,6 +115,35 @@ function changePhoto() {
 		    	var headPath = $("#headPath").val();
 		    	$(".head_photo_20").attr("src",headPath+"/"+newPhoto+".jpg");
 		    	$(".head_photo_100").attr("src",headPath+"/"+newPhoto+".jpg");
+		    }
+	    }
+	});
+}
+
+function addRoom() {
+	var userId = $("#loginUserId").val();
+	if(userId==-1) {
+		location.href = path+"/index#login";
+		return;
+	}
+	var roomType = $("#add-room-type").val();
+	var roomName = $("#add-room-name").val();
+	var password = $("#add-room-password").val();
+	$.ajax({
+	    type: "POST",
+	    url: path + "/addRoom",
+	    data: {
+	        userId: userId,
+	        roomType:roomType,
+	        roomName:roomName,
+	        password:password
+	    },
+	    dataType: "json",
+	    success: function(msg) {
+		    if (msg.success) {
+		    	location.href = path+"/index#talk";
+		    }else {
+		    	alert(msg.list);
 		    }
 	    }
 	});

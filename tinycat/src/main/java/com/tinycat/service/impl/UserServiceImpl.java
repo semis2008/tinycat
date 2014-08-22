@@ -81,4 +81,9 @@ public class UserServiceImpl implements UserService {
 	public boolean changeUserName(Long userId, String name) {
 		return userDao.updateUserName(userId,name)>0?true:false;
 	}
+
+	@Override
+	public User getUserById(Long userId) {
+		return userDao.queryUserById(userId);
+	}
 }

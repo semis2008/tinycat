@@ -21,6 +21,8 @@ public interface UserDao {
 	 */
 	User queryUserByEmail(String email);
 	
+	User queryUserById(Long userId);
+	
 	User queryUserByName(String name);
 	
 	int insertUser(User user);

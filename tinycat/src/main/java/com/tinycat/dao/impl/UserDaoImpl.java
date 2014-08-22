@@ -68,4 +68,10 @@ public class UserDaoImpl implements UserDao {
 		return dbUtilsTemplate.update(sql, params);
 	}
 
+	@Override
+	public User queryUserById(Long userId) {
+		String sql = "select * from user where id = ?";
+		return dbUtilsTemplate.findFirst(User.class, sql, userId);
+	}
+
 }

@@ -10,9 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tinycat.dto.Room;
+import com.tinycat.dto.RoomList;
 import com.tinycat.dto.UserDTO;
 import com.tinycat.pojo.User;
 import com.tinycat.service.UserService;
+import com.tinycat.util.RoomType;
+import com.tinycat.util.TalkUtil;
 import com.tinycat.util.WebUtil;
 
 /**
@@ -37,39 +41,36 @@ public class IndexController {
 	@RequestMapping(value = "/index")
 	private ModelAndView showIndex(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		setLoginUserDTO(req);
- 
+		
+		//获取房间列表
+		RoomList newsRoomList = getRoomList(RoomType.NEWS);
+		RoomList gameRoomList = getRoomList(RoomType.GAME);
+		RoomList tvRoomList = getRoomList(RoomType.TV);
+		RoomList lifeRoomList = getRoomList(RoomType.LIFE);
+		 
+		req.setAttribute("newsRoomList", newsRoomList);
+		req.setAttribute("gameRoomList", gameRoomList);
+		req.setAttribute("tvRoomList", tvRoomList);
+		req.setAttribute("lifeRoomList", lifeRoomList);
+		
 		return new ModelAndView("index");
 	}
-	
-	/**
-	 * 登陆页
-	 * 
-	 * @param req
-	 * @param resp
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/login")
-	private ModelAndView showLogin(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		setLoginUserDTO(req);
-		return new ModelAndView("login");
-	}
 
-	/**
-	 * 注册页
-	 * 
-	 * @param req
-	 * @param resp
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/regist")
-	private ModelAndView showRegist(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		setLoginUserDTO(req);
-		// 获取活跃用户，按积分
-		List<User> activeUsers = userService.getActiveUsers(8);
-		req.setAttribute("activeUsers", activeUsers);
-		return new ModelAndView("regist");
+	
+	
+	
+	private RoomList getRoomList(RoomType type) {
+		List<Room> roomList = TalkUtil.getRoomList(type);
+		RoomList resRoomList = new RoomList();
+		if(roomList.size()>RoomList.SHOW_NUM) {
+			resRoomList.setHasMore(true);
+			resRoomList.setRooms(roomList.subList(0, RoomList.SHOW_NUM));
+		}else {
+			resRoomList.setHasMore(false);
+			resRoomList.setRooms(roomList);
+
+		}
+		return resRoomList;
 	}
 	
 	/**
