@@ -56,9 +56,6 @@ public class IndexController {
 		return new ModelAndView("index");
 	}
 
-	
-	
-	
 	private RoomList getRoomList(RoomType type) {
 		List<Room> roomList = TalkUtil.getRoomList(type);
 		RoomList resRoomList = new RoomList();

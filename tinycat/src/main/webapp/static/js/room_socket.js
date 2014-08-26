@@ -24,11 +24,15 @@ function WSonOpen() {
 };
 
 function WSonMessage(event) {
-	// 接收到消息之后，动态更新房间列表
-	var msg = JSON.parse(event.data);
+	if(event.data=="Hello!"){
+	}else{
+		// 接收到消息之后，动态更新房间列表
+		var msg = JSON.parse(event.data);
+		if(msg.action=="add") {
+			addRoomAction(msg.roomName,msg.roomType);
+		}
+	}
 
-	alert(msg.action);
-	 
 };
 
 function WSonClose() {
@@ -37,7 +41,7 @@ function WSonClose() {
 function WSonError() {
 };
 
-$(function() {
+$(document).ready(function() {
 	var WebSocketsExist = true;
 	try {
 		var dummy = new WebSocket(roomWsUrl);
@@ -55,3 +59,37 @@ $(function() {
 		alert("您的浏览器不支持WebSocket。请选择其他的浏览器再尝试连接服务器。", "ERROR");
 	}
 });
+
+
+function addRoomAction(name,type) {
+	var list,size,changeRoomDown;
+	var roomHtml = "<a href='#talk' class='list-group-item'>"+name+"</a>"; 
+	if(type=="NEWS") {
+		list = $("#news_room_list");
+		size = $("#news_room_list a").size();
+		changeRoomDown = $("#news_change_rooms_down");
+	}
+	if(type=="GAME") {
+		list = $("#game_room_list");
+		size = $("#game_room_list a").size();
+		changeRoomDown = $("#game_change_rooms_down");
+	}
+	if(type=="TV") {
+		list = $("#tv_room_list");
+		size = $("#tv_room_list a").size();	
+		changeRoomDown = $("#tv_change_rooms_down");
+	}
+	if(type=="LIFE") {
+		list = $("#life_room_list");
+		size = $("#life_room_list a").size();
+		changeRoomDown = $("#life_change_rooms_down");
+	}
+	if(size<8) {
+		list.append(roomHtml);
+	}else if(changeRoomDown.hasClass("hidden")) {
+		changeRoomDown.removeClass("hidden");
+	}
+	
+	
+}
+

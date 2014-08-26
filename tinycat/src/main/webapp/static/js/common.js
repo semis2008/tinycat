@@ -145,11 +145,11 @@ $("#registbtn").click(function(){
 
 function showLoginErrorTip(msg) {
 	$('#login-error-tip').removeClass('hidden');
-	$("#login-error-tip span").text(msg.list);
+	$("#login-error-tip span").html(msg);
 }
 
 function showRegistErrorTip(msg) {
 	$('#regist-error-tip').removeClass('hidden');
-	$("#regist-error-tip span").text(msg.list);
+	$("#regist-error-tip span").text(msg);
 }
  

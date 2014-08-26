@@ -36,6 +36,7 @@
 	<servlet>
 		<servlet-name>roomServlet</servlet-name>
 		<servlet-class>com.tinycat.websocket.RoomServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>roomServlet</servlet-name>

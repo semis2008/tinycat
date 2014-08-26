@@ -77,7 +77,10 @@ function registBtnAction() {
 	$("#add-room-btn").click(function(){
 		addRoom();
 	});
-	
+	//更换房间
+	$(".changeRooms").click(function(){
+		changeRoom(this);
+	});
 	
 }
 
@@ -93,6 +96,68 @@ function randomBG() {
 	$(".mid-section").addClass("mid-bg-0"+midIndex);
 	var midIndex = getRandomInt(0, 2);
 	$("#login").addClass("login-bg-0"+midIndex);
+	
+}
+
+function changeRoom(dom) {
+	var id = $(dom).attr("id");
+	var type,action,page;
+	if(id.indexOf("news")>=0) 
+		type = "news";
+	if(id.indexOf("game")>=0) 
+		type = "game";
+	if(id.indexOf("tv")>=0) 
+		type = "tv";
+	if(id.indexOf("life")>=0) 
+		type = "life";
+
+	if(id.indexOf("up")>=0) 
+		action = "up";
+	if(id.indexOf("down")>=0) 
+		action = "down";
+	
+	page = $(dom).attr("page-num");
+
+	$.ajax({
+	    type: "POST",
+	    url: path + "/changeRooms",
+	    data: {
+	        type: type,
+	        action: action,
+	        page: page
+	    },
+	    dataType: "json",
+	    success: function(msg) {
+		    if (msg.success) {
+		    	var roomsHtml = "";
+		    	var rooms = msg.list.rooms;
+		    	var hasMore = msg.list.hasMore;
+		    	var page = msg.list.page;
+		    	//显示html
+		    	$(rooms).each(function(index) {
+		    		var room = rooms[index];
+		    		var roomHtml = "<a href='#talk' class='list-group-item'>"+room.name+"</a>";
+		    		roomsHtml+=roomHtml;
+		    	});
+		    	$("#"+type+"_room_list").html(roomsHtml);
+		    	//显示向上按钮
+		    	if(page>1) {
+		    		$("#"+type+"_change_rooms_up").removeClass("hidden");
+		    	}else{
+		    		$("#"+type+"_change_rooms_up").addClass("hidden");
+		    	}
+		    	//是否显示向下按钮
+		    	if(hasMore) 
+		    		$("#"+type+"_change_rooms_down").removeClass("hidden");
+		    	else
+		    		$("#"+type+"_change_rooms_down").addClass("hidden");
+		    	//更新页面page标记
+		    	$("#"+type+"_change_rooms_down").attr("page-num",page);
+		    	$("#"+type+"_change_rooms_up").attr("page-num",page);
+		    	
+		    }
+	    }
+	});
 	
 }
 
@@ -141,8 +206,10 @@ function addRoom() {
 	    dataType: "json",
 	    success: function(msg) {
 		    if (msg.success) {
-		    	//更新聊天窗口信息
-		    	
+		    	//隐藏新建房间界面，清除输入内容
+		    	$("#add-room-name").val("");
+		    	$("#add-room-password").val("");
+		    	$("#new-room-div").fadeToggle("slow");
 		    }else {
 		    	alert(msg.list);
 		    }

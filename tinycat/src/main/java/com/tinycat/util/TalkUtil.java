@@ -25,22 +25,24 @@ public class TalkUtil {
 	  * @return
 	 */
 	public static ReturnType addRoom(RoomType type,Room room) {
+		ReturnType returnType = ReturnType.SUCCESS;
 		if(type.equals(RoomType.NEWS)) {
-			return addRoomWithType(NEWS_ROOM,room);
+			returnType =  addRoomWithType(NEWS_ROOM,room);
 		}else if(type.equals(RoomType.GAME)) {
-			return addRoomWithType(GAME_ROOM,room);
+			returnType =  addRoomWithType(GAME_ROOM,room);
 		}else if(type.equals(RoomType.TV)) {
-			return addRoomWithType(TV_ROOM,room);
+			returnType =  addRoomWithType(TV_ROOM,room);
 		}else if(type.equals(RoomType.LIFE)) {
-			return addRoomWithType(LIFE_ROOM,room);
+			returnType =  addRoomWithType(LIFE_ROOM,room);
 		}
-		//提醒前端更新
-		RoomMsg msg = new RoomMsg();
-		msg.setAction("add");
-		msg.setRoomName(room.getName());
-		msg.setRoomType(type);
-		RoomServlet.sendMessage(msg);
-		
+		if(ReturnType.SUCCESS==returnType) {
+			//向所有登陆用户推送房间变化信息
+			RoomMsg msg = new RoomMsg();
+			msg.setAction("add");
+			msg.setRoomName(room.getName());
+			msg.setRoomType(type);
+			RoomServlet.sendMessage(msg);
+		}
 		return ReturnType.SUCCESS;
 	}
 
@@ -54,14 +56,23 @@ public class TalkUtil {
 	  * @return
 	 */
 	public static ReturnType removeRoom(RoomType type,Room room) {
+		ReturnType returnType = ReturnType.SUCCESS;
 		if(type.equals(RoomType.NEWS)) {
-			return removeRoomWithType(NEWS_ROOM,room);
+			returnType =  removeRoomWithType(NEWS_ROOM,room);
 		}else if(type.equals(RoomType.GAME)) {
-			return removeRoomWithType(GAME_ROOM,room);
+			returnType =  removeRoomWithType(GAME_ROOM,room);
 		}else if(type.equals(RoomType.TV)) {
-			return removeRoomWithType(TV_ROOM,room);
+			returnType =  removeRoomWithType(TV_ROOM,room);
 		}else if(type.equals(RoomType.LIFE)) {
-			return removeRoomWithType(LIFE_ROOM,room);
+			returnType =  removeRoomWithType(LIFE_ROOM,room);
+		}
+		if(ReturnType.SUCCESS==returnType) {
+			//向所有登陆用户推送房间变化信息
+			RoomMsg msg = new RoomMsg();
+			msg.setAction("remove");
+			msg.setRoomName(room.getName());
+			msg.setRoomType(type);
+			RoomServlet.sendMessage(msg);
 		}
 		return ReturnType.SUCCESS;
 	}
