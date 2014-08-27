@@ -24,6 +24,11 @@ public class WSMsgInboundPool {
 		if(inbound.getUser()==null) {
 		}else {
 			System.out.println("user : " + inbound.getUser() + " join..");
+			if(loginConnections.get(inbound.getUser())!=null) {
+				WSMsgInbound old = loginConnections.get(inbound.getUser());
+				inbound.setRoomName(old.getRoomName());
+				inbound.setRoomType(old.getRoomType());
+			}
 			loginConnections.put(inbound.getUser(), inbound);
 		}
 	}
