@@ -78,7 +78,6 @@ public class UserController {
 		}
 		//更新用户登录时间
 		userService.updateUserLoginTime(email);
-		
 		JsonUtil.outputDTOToJSON(null, true, resp);
 	}
 

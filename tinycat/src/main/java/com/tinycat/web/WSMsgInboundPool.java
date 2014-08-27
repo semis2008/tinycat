@@ -7,34 +7,48 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class WebSocketMessageInboundPool {
+public class WSMsgInboundPool {
 
 	//保存连接的MAP容器
-	private static final Map<String,WebSocketMessageInbound > connections = new HashMap<String,WebSocketMessageInbound>();
-	
+	private static final Map<String,WSMsgInbound > loginConnections = new HashMap<String,WSMsgInbound>();
+ 		
 	//向连接池中添加连接
-	public static void addMessageInbound(WebSocketMessageInbound inbound){
+	public static void addMessageInbound(WSMsgInbound inbound){
 		//添加连接
-		System.out.println("user : " + inbound.getUser() + " join..");
-		connections.put(inbound.getUser(), inbound);
+		if(inbound.getUser()==null) {
+		}else {
+			System.out.println("user : " + inbound.getUser() + " join..");
+			loginConnections.put(inbound.getUser(), inbound);
+		}
 	}
 	
 	//获取所有的在线用户
 	public static Set<String> getOnlineUser(){
-		return connections.keySet();
+		return loginConnections.keySet();
 	}
 	
-	public static void removeMessageInbound(WebSocketMessageInbound inbound){
+	public static void removeMessageInbound(WSMsgInbound inbound){
 		//移除连接
 		System.out.println("user : " + inbound.getUser() + " exit..");
-		connections.remove(inbound.getUser());
+		if(inbound.getUser()==null) {
+		}else {
+			loginConnections.remove(inbound.getUser());
+		}
 	}
 	
+	/**
+	 * 
+	  * 向指定用户发送消息
+	  *
+	  * @autor: wn  2014-8-27 下午4:21:45
+	  * @param user
+	  * @param message
+	 */
 	public static void sendMessageToUser(String user,String message){
 		try {
 			//向特定的用户发送数据
 			System.out.println("send message to user : " + user + " ,message content : " + message);
-			WebSocketMessageInbound inbound = connections.get(user);
+			WSMsgInbound inbound = loginConnections.get(user);
 			if(inbound != null){
 				inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
 			}
@@ -43,12 +57,18 @@ public class WebSocketMessageInboundPool {
 		}
 	}
 	
-	//向所有的用户发送消息
-	public static void sendMessage(String message){
+	/**
+	 * 
+	  * 向所有用户（包括游客）发送消息
+	  *
+	  * @autor: wn  2014-8-27 下午4:21:15
+	  * @param message
+	 */
+	public static void sendMessageToAll(String message){
 		try {
-			Set<String> keySet = connections.keySet();
+			Set<String> keySet = loginConnections.keySet();
 			for (String key : keySet) {
-				WebSocketMessageInbound inbound = connections.get(key);
+				WSMsgInbound inbound = loginConnections.get(key);
 				if(inbound != null){
 					System.out.println("send message to user : " + key + " ,message content : " + message);
 					inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));

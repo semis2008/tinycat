@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.Gson;
 import com.tinycat.dto.Room;
 import com.tinycat.dto.RoomMsg;
-import com.tinycat.websocket.RoomServlet;
+import com.tinycat.web.WSMsgInboundPool;
 
 public class TalkUtil {
 	private static Map<String,Room> NEWS_ROOM = new HashMap<String, Room>();
@@ -36,12 +37,13 @@ public class TalkUtil {
 			returnType =  addRoomWithType(LIFE_ROOM,room);
 		}
 		if(ReturnType.SUCCESS==returnType) {
-			//向所有登陆用户推送房间变化信息
+			//向所有用户推送房间变化信息
 			RoomMsg msg = new RoomMsg();
 			msg.setAction("add");
 			msg.setRoomName(room.getName());
 			msg.setRoomType(type);
-			RoomServlet.sendMessage(msg);
+			Gson gson = new Gson();
+			WSMsgInboundPool.sendMessageToAll(gson.toJson(msg));
 		}
 		return ReturnType.SUCCESS;
 	}
@@ -72,7 +74,8 @@ public class TalkUtil {
 			msg.setAction("remove");
 			msg.setRoomName(room.getName());
 			msg.setRoomType(type);
-			RoomServlet.sendMessage(msg);
+			Gson gson = new Gson();
+			WSMsgInboundPool.sendMessageToAll(gson.toJson(msg));
 		}
 		return ReturnType.SUCCESS;
 	}

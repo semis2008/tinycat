@@ -1,5 +1,5 @@
 var path = $("#contextPath").val();
-var roomWsUrl = "ws://localhost:8080/tinycat/roomServlet";
+var roomWsUrl = "ws://localhost:8080/tinycat/WS";
 var roomWs;
 
 function startConn() {
