@@ -40,6 +40,7 @@ import com.tinycat.util.RoomType;
 import com.tinycat.util.StringUtil;
 import com.tinycat.util.TalkUtil;
 import com.tinycat.util.WebUtil;
+import com.tinycat.web.WSMsgInboundPool;
 
 /**
  * 用户相关处理类
@@ -143,7 +144,7 @@ public class RoomController {
 		} else if ("life".equals(roomType)) {
 			room.setType(RoomType.LIFE);
 		}
-		room.setUsers(Arrays.asList(dto));
+		WSMsgInboundPool.userJoinRoom(dto.getEmail(), roomName, room.getType());
 		return room;
 	}
 }

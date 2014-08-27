@@ -13,7 +13,7 @@ public class Room {
 	private UserDTO createUser;
 	private boolean hasPassword;
 	private Date createTime;
-	private List<UserDTO> users;
+	private int userCount;
 	
 	
 	 
@@ -53,12 +53,13 @@ public class Room {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	public List<UserDTO> getUsers() {
-		return users;
+	public int getUserCount() {
+		return userCount;
 	}
-	public void setUsers(List<UserDTO> users) {
-		this.users = users;
+	public void setUserCount(int userCount) {
+		this.userCount = userCount;
 	}
+ 
 	
 	
 }

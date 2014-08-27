@@ -7,10 +7,14 @@ import java.nio.CharBuffer;
 import org.apache.catalina.websocket.MessageInbound;
 import org.apache.catalina.websocket.WsOutbound;
 
+import com.tinycat.util.RoomType;
+
 public class WSMsgInbound extends MessageInbound {
 
 	//当前连接的用户名称
 	private final String user;
+	private String roomName;
+	private RoomType roomType;
 
 	public WSMsgInbound(String user) {
 		this.user = user;
@@ -18,6 +22,22 @@ public class WSMsgInbound extends MessageInbound {
 
 	public String getUser() {
 		return this.user;
+	}
+
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
+	public RoomType getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
 	}
 
 	//建立连接的触发的事件

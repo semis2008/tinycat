@@ -121,8 +121,10 @@ public class TalkUtil {
 	private static List<Room> getRoomListFromMap(Map<String,Room> rooms) {
 		Object[] roomArr = rooms.values().toArray();
 		List<Room> roomList = new ArrayList<Room>();
-		for(Object room:roomArr) {
-			roomList.add((Room) room);
+		for(Object roomObj:roomArr) {
+			Room room = (Room)roomObj;
+			room.setUserCount(WSMsgInboundPool.getUsersByRoom(room.getName(), room.getType()).size());
+			roomList.add(room);
 		}
 		return roomList;
 		

@@ -3,9 +3,15 @@ package com.tinycat.web;
 
 import java.io.IOException;
 import java.nio.CharBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.gson.Gson;
+import com.tinycat.dto.RoomMsg;
+import com.tinycat.util.RoomType;
 
 public class WSMsgInboundPool {
 
@@ -28,12 +34,12 @@ public class WSMsgInboundPool {
 	}
 	
 	public static void removeMessageInbound(WSMsgInbound inbound){
-		//移除连接
-		System.out.println("user : " + inbound.getUser() + " exit..");
-		if(inbound.getUser()==null) {
-		}else {
-			loginConnections.remove(inbound.getUser());
-		}
+//		//移除连接
+//		System.out.println("user : " + inbound.getUser() + " exit..");
+//		if(inbound.getUser()==null) {
+//		}else {
+//			loginConnections.remove(inbound.getUser());
+//		}
 	}
 	
 	/**
@@ -55,6 +61,37 @@ public class WSMsgInboundPool {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void userJoinRoom(String user,String roomName,RoomType roomType) {
+		WSMsgInbound inbound = loginConnections.get(user);
+		inbound.setRoomName(roomName);
+		inbound.setRoomType(roomType);
+		loginConnections.put(user, inbound);
+		
+		//向所有登陆用户发送通知
+		RoomMsg msg = new RoomMsg();
+		msg.setAction("user_join");
+		msg.setRoomName(roomName);
+		msg.setRoomType(roomType);
+		Gson gson = new Gson();
+		WSMsgInboundPool.sendMessageToAll(gson.toJson(msg));
+		
+		
+	}
+	
+	public static List<String> getUsersByRoom(String roomName,RoomType roomType) {
+		List<String> users = new ArrayList<String>();
+		Set<String> keySet = loginConnections.keySet();
+		for (String key : keySet) {
+			WSMsgInbound inbound = loginConnections.get(key);
+			if(inbound != null){
+				if(inbound.getRoomType()==roomType&&inbound.getRoomName().equals(roomName)) {
+					users.add(inbound.getUser());
+				}
+			}
+		}
+		return users;
 	}
 	
 	/**
