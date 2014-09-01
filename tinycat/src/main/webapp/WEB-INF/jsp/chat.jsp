@@ -46,27 +46,49 @@
 		</div>
 		<div class="col-lg-3">
 			<div class="list-group online-users">
-				<a href="javascript:void(0)" class="list-group-item disabled">
-					在线用户</a> <a href="javascript:void(0)" class="list-group-item">Dapibus
-					ac facilisis in</a> <a href="javascript:void(0)"
-					class="list-group-item">Morbi leo risus</a> <a href="#"
-					class="list-group-item">Porta ac consectetur ac</a> <a href="#"
-					class="list-group-item">Vestibulum at eros</a> <a href="#"
-					class="list-group-item">Vestibulum at eros</a> <a href="#"
-					class="list-group-item">Vestibulum at eros</a> <a href="#"
-					class="list-group-item">Vestibulum at eros</a> <a href="#"
-					class="list-group-item">Vestibulum at eros</a> <a
-					href="javascript:void(0)" class=" btn btn-block btn-info"><i
+				<a href="javascript:void(0)" class="ou-title"> <i
+					class="fa fa-users"></i> 在线用户
+				</a>
+				<div class="ou-users">
+					<a href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a>
+				</div>
+				<a href="javascript:void(0)" class=" btn btn-block btn-info"><i
 					class="fa fa-chevron-circle-right"></i></a>
 			</div>
 
 		</div>
 		<div class="col-lg-9 input-bar">
 			<div class="input-group">
-				<input type="text" class="form-control">
-				<span class="input-group-btn">
+				<input type="text" class="form-control"> <span
+					class="input-group-btn">
 					<button class="btn btn-success" type="button">发送</button>
-				</span> 
+				</span>
 			</div>
 		</div>
 	</div>
