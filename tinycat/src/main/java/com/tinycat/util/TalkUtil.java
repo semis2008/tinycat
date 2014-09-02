@@ -5,9 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import com.google.gson.Gson;
 import com.tinycat.dto.Room;
 import com.tinycat.dto.RoomMsg;
+import com.tinycat.dto.UserDTO;
+import com.tinycat.pojo.User;
+import com.tinycat.service.UserService;
 import com.tinycat.web.WSMsgInboundPool;
 
 public class TalkUtil {
@@ -16,6 +21,8 @@ public class TalkUtil {
 	private static Map<String,Room> TV_ROOM = new HashMap<String, Room>();
 	private static Map<String,Room> LIFE_ROOM = new HashMap<String, Room>();
 	
+	@Resource
+	UserService userService;
 	/**
 	 * 
 	  * 将房间添加到房间Map中

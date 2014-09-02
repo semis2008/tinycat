@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.gson.Gson;
+import com.tinycat.dto.Room;
 import com.tinycat.dto.RoomMsg;
 import com.tinycat.dto.UserDTO;
 import com.tinycat.dto.UserMsg;
@@ -31,6 +32,7 @@ public class WSMsgInboundPool {
 				WSMsgInbound old = loginConnections.get(inbound.getUser());
 				inbound.setRoomName(old.getRoomName());
 				inbound.setRoomType(old.getRoomType());
+				inbound.setTypeName(old.getTypeName());
 			}
 			loginConnections.put(inbound.getUser(), inbound);
 		}
@@ -71,10 +73,11 @@ public class WSMsgInboundPool {
 		}
 	}
 	
-	public static void userJoinRoom(UserDTO user,String roomName,RoomType roomType) {
+	public static void userJoinRoom(UserDTO user,String roomName,RoomType roomType,String typeName) {
 		WSMsgInbound inbound = loginConnections.get(user.getEmail());
 		inbound.setRoomName(roomName);
 		inbound.setRoomType(roomType);
+		inbound.setTypeName(typeName);
 		loginConnections.put(user.getEmail(), inbound);
 		
 		//向所有登陆用户发送通知
@@ -97,6 +100,17 @@ public class WSMsgInboundPool {
 			}
 		}
 		return users;
+	}
+	
+	public static Room getRoomByUser(String user) {
+		Room room = new Room();
+		WSMsgInbound inbound = loginConnections.get(user);
+		if(inbound==null) 
+			return null;
+		room.setName(inbound.getRoomName());
+		room.setType(inbound.getRoomType());
+		room.setTypeName(inbound.getTypeName());
+		return room;
 	}
 	
 	/**

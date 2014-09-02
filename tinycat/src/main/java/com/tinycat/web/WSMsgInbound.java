@@ -15,13 +15,22 @@ public class WSMsgInbound extends MessageInbound {
 	private final String user;
 	private String roomName;
 	private RoomType roomType;
-
+	private String typeName;
+	
 	public WSMsgInbound(String user) {
 		this.user = user;
 	}
 
 	public String getUser() {
 		return this.user;
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 	public String getRoomName() {

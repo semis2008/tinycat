@@ -7,7 +7,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <div class="row panel">
 	<div class="panel-heading">
-		影视剧 <i class="fa fa-angle-double-right"></i> 房间名113zad
+		${room.typeName } <i class="fa fa-angle-double-right"></i> ${room.name }
 	</div>
 	<div class="panel-body">
 		<div class="col-lg-9">
@@ -50,36 +50,11 @@
 					class="fa fa-users"></i> 本房间活跃用户
 				</a>
 				<div class="ou-users">
+					<c:forEach items="${roomUsers }" var="user">
 					<a href="javascript:void(0)" class="list-group-item"><img
 						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
-						href="javascript:void(0)" class="list-group-item"><img
-						alt="head" class="head_photo_20 img-rounded"
-						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a>
+						src="<%=headPath %>/${user.photo }.jpg"> ${user.name }</a>	
+					</c:forEach>
 				</div>
 			</div>
 

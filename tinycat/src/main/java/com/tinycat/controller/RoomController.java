@@ -80,16 +80,21 @@ public class RoomController {
 		}
 		User user = userService.getUserById(userId);
 		RoomType roomType = null;
+		String typeName = "";
 		if ("news".equals(type)) {
 			roomType = RoomType.NEWS;
+			typeName = "新闻";
 		} else if ("game".equals(type)) {
 			roomType = RoomType.GAME;
+			typeName = "游戏";
 		} else if ("tv".equals(type)) {
 			roomType = RoomType.TV;
+			typeName = "影视剧";
 		} else if ("life".equals(type)) {
 			roomType = RoomType.LIFE;
+			typeName = "生活";
 		}
-		WSMsgInboundPool.userJoinRoom(UserDTO.init(user), roomName, roomType);
+		WSMsgInboundPool.userJoinRoom(UserDTO.init(user), roomName, roomType,typeName);
 		JsonUtil.outputDTOToJSON(null, true, resp);
 	}
 	
@@ -162,14 +167,18 @@ public class RoomController {
 		}
 		if ("news".equals(roomType)) {
 			room.setType(RoomType.NEWS);
+			room.setTypeName("新闻");
 		} else if ("game".equals(roomType)) {
 			room.setType(RoomType.GAME);
+			room.setTypeName("游戏");
 		} else if ("tv".equals(roomType)) {
 			room.setType(RoomType.TV);
+			room.setTypeName("影视剧");
 		} else if ("life".equals(roomType)) {
 			room.setType(RoomType.LIFE);
+			room.setTypeName("生活");
 		}
-		WSMsgInboundPool.userJoinRoom(dto, roomName, room.getType());
+		WSMsgInboundPool.userJoinRoom(dto, roomName, room.getType(), room.getTypeName());
 		return room;
 	}
 }

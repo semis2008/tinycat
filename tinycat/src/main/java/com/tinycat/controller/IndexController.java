@@ -1,5 +1,6 @@
 package com.tinycat.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import com.tinycat.service.UserService;
 import com.tinycat.util.RoomType;
 import com.tinycat.util.TalkUtil;
 import com.tinycat.util.WebUtil;
+import com.tinycat.web.WSMsgInboundPool;
 
 /**
  * 系统响应处理类
@@ -48,11 +50,28 @@ public class IndexController {
 		RoomList tvRoomList = getRoomList(RoomType.TV);
 		RoomList lifeRoomList = getRoomList(RoomType.LIFE);
 		 
+		//获取登陆用户所属房间
+		Room room = WSMsgInboundPool.getRoomByUser(WebUtil.getLoginUser());
+		if(room==null) {
+			room = new Room();
+			room.setName("Wantalk官方房间");
+			room.setType(RoomType.DEFAULT);
+			room.setTypeName("默认");
+		}
+		//获取房间用户
+		List<UserDTO> users = new ArrayList<UserDTO>();
+		List<String> emails = WSMsgInboundPool.getUsersByRoom(room.getName(), room.getType());
+		for(String email:emails) {
+			User user = userService.getUserByEmail(email);
+			if(user!=null)
+				users.add(UserDTO.init(user));
+		}
+		req.setAttribute("room", room);
+		req.setAttribute("roomUsers", users);
 		req.setAttribute("newsRoomList", newsRoomList);
 		req.setAttribute("gameRoomList", gameRoomList);
 		req.setAttribute("tvRoomList", tvRoomList);
 		req.setAttribute("lifeRoomList", lifeRoomList);
-		
 		return new ModelAndView("index");
 	}
 
