@@ -161,6 +161,27 @@ function changeRoom(dom) {
 	
 }
 
+function joinRoom(type,roomName) {
+	var userId = $("#loginUserId").val();
+	if(userId==-1) 
+		return;
+	$.ajax({
+	    type: "POST",
+	    url: path + "/room/join",
+	    data: {
+	        userId: userId,
+	        roomType: type,
+			roomName: roomName
+	    },
+	    dataType: "json",
+	    success: function(msg) {
+		     
+	    }
+	});
+	
+	
+}
+
 function changePhoto() {
 	var userId = $("#loginUserId").val();
 	if(userId==-1) 

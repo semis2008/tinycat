@@ -39,7 +39,7 @@ public class TalkUtil {
 		if(ReturnType.SUCCESS==returnType) {
 			//向所有用户推送房间变化信息
 			RoomMsg msg = new RoomMsg();
-			msg.setAction("add");
+			msg.setAction("room_add");
 			msg.setRoomName(room.getName());
 			msg.setRoomType(type);
 			Gson gson = new Gson();

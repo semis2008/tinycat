@@ -69,8 +69,8 @@ public class RoomController {
 		JsonUtil.outputDTOToJSON(room, true, resp);
 	}
 	
-	@RequestMapping(value = "/getIn")
-	private void getIn(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	@RequestMapping(value = "/join")
+	private void join(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
 		String type = ParamUtils.getParameter(req, "roomType");
 		String roomName = ParamUtils.getParameter(req, "roomName");

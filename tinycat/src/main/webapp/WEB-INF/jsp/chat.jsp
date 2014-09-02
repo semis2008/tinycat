@@ -47,7 +47,7 @@
 		<div class="col-lg-3">
 			<div class="list-group online-users">
 				<a href="javascript:void(0)" class="ou-title"> <i
-					class="fa fa-users"></i> 在线用户
+					class="fa fa-users"></i> 本房间活跃用户
 				</a>
 				<div class="ou-users">
 					<a href="javascript:void(0)" class="list-group-item"><img
@@ -76,10 +76,11 @@
 						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
 						href="javascript:void(0)" class="list-group-item"><img
 						alt="head" class="head_photo_20 img-rounded"
+						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a> <a
+						href="javascript:void(0)" class="list-group-item"><img
+						alt="head" class="head_photo_20 img-rounded"
 						src="<%=headPath %>/${loginUser.photo }.jpg"> 王小燕</a>
 				</div>
-				<a href="javascript:void(0)" class=" btn btn-block btn-info"><i
-					class="fa fa-chevron-circle-right"></i></a>
 			</div>
 
 		</div>
