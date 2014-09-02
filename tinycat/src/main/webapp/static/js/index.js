@@ -120,7 +120,7 @@ function changeRoom(dom) {
 
 	$.ajax({
 	    type: "POST",
-	    url: path + "/changeRooms",
+	    url: path + "/room/change",
 	    data: {
 	        type: type,
 	        action: action,
@@ -196,7 +196,7 @@ function addRoom() {
 	var password = $("#add-room-password").val();
 	$.ajax({
 	    type: "POST",
-	    url: path + "/addRoom",
+	    url: path + "/room/add",
 	    data: {
 	        userId: userId,
 	        roomType:roomType,

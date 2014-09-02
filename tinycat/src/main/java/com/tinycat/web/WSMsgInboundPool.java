@@ -11,6 +11,9 @@ import java.util.Set;
 
 import com.google.gson.Gson;
 import com.tinycat.dto.RoomMsg;
+import com.tinycat.dto.UserDTO;
+import com.tinycat.dto.UserMsg;
+import com.tinycat.pojo.User;
 import com.tinycat.util.RoomType;
 
 public class WSMsgInboundPool {
@@ -68,21 +71,18 @@ public class WSMsgInboundPool {
 		}
 	}
 	
-	public static void userJoinRoom(String user,String roomName,RoomType roomType) {
-		WSMsgInbound inbound = loginConnections.get(user);
+	public static void userJoinRoom(UserDTO user,String roomName,RoomType roomType) {
+		WSMsgInbound inbound = loginConnections.get(user.getEmail());
 		inbound.setRoomName(roomName);
 		inbound.setRoomType(roomType);
-		loginConnections.put(user, inbound);
+		loginConnections.put(user.getEmail(), inbound);
 		
 		//向所有登陆用户发送通知
-		RoomMsg msg = new RoomMsg();
-		msg.setAction("user_join");
-		msg.setRoomName(roomName);
-		msg.setRoomType(roomType);
+		UserMsg userMsg = new UserMsg();
+		userMsg.setAction("user_join");
+		userMsg.setUser(user);
 		Gson gson = new Gson();
-		WSMsgInboundPool.sendMessageToAll(gson.toJson(msg));
-		
-		
+		WSMsgInboundPool.sendMessageWithInRoom(gson.toJson(userMsg), roomName, roomType);
 	}
 	
 	public static List<String> getUsersByRoom(String roomName,RoomType roomType) {
@@ -108,11 +108,33 @@ public class WSMsgInboundPool {
 	 */
 	public static void sendMessageToAll(String message){
 		try {
+			System.out.println("send message to All ser ,message content : " + message);
 			Set<String> keySet = loginConnections.keySet();
 			for (String key : keySet) {
 				WSMsgInbound inbound = loginConnections.get(key);
 				if(inbound != null){
-					System.out.println("send message to user : " + key + " ,message content : " + message);
+					inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	  * 向指定房间推送消息
+	  *
+	  * @autor: wn  2014-8-27 下午4:21:15
+	  * @param message
+	 */
+	public static void sendMessageWithInRoom(String message,String roomName,RoomType type){
+		try {
+			Set<String> keySet = loginConnections.keySet();
+			System.out.println("send message to Room:" + roomName + ",message content : " + message);
+			for (String key : keySet) {
+				WSMsgInbound inbound = loginConnections.get(key);
+				if(inbound != null&&inbound.getRoomName().equals(roomName)&&inbound.getRoomType()==type){
 					inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
 				}
 			}

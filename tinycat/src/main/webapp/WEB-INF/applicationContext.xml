@@ -87,7 +87,8 @@
 			<value>
 				/index = anon
 				/WS = anon
-				/room/* = authc
+				/room/* = anon
+<!-- 				/room/* = authc -->
 				/logout = logout
 			</value>
 		</property>

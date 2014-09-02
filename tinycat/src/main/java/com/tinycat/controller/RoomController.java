@@ -49,11 +49,12 @@ import com.tinycat.web.WSMsgInboundPool;
  * @time 2012-12-14
  */
 @Controller
+@RequestMapping("/room")
 public class RoomController {
 	@Resource
 	UserService userService;
 
-	@RequestMapping(value = "/addRoom")
+	@RequestMapping(value = "/add")
 	private void add(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
 		String roomType = ParamUtils.getParameter(req, "roomType");
@@ -68,8 +69,32 @@ public class RoomController {
 		JsonUtil.outputDTOToJSON(room, true, resp);
 	}
 	
-	@RequestMapping(value = "/changeRooms")
-	private void changeRooms(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	@RequestMapping(value = "/getIn")
+	private void getIn(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
+		String type = ParamUtils.getParameter(req, "roomType");
+		String roomName = ParamUtils.getParameter(req, "roomName");
+		if (userId == 0l || "".equals(type) || "".equals(roomName)) {
+			JsonUtil.outputDTOToJSON("参数错误", false, resp);
+			return;
+		}
+		User user = userService.getUserById(userId);
+		RoomType roomType = null;
+		if ("news".equals(type)) {
+			roomType = RoomType.NEWS;
+		} else if ("game".equals(type)) {
+			roomType = RoomType.GAME;
+		} else if ("tv".equals(type)) {
+			roomType = RoomType.TV;
+		} else if ("life".equals(type)) {
+			roomType = RoomType.LIFE;
+		}
+		WSMsgInboundPool.userJoinRoom(UserDTO.init(user), roomName, roomType);
+		JsonUtil.outputDTOToJSON(null, true, resp);
+	}
+	
+	@RequestMapping(value = "/change")
+	private void change(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		String type = ParamUtils.getParameter(req, "type");
 		String action = ParamUtils.getParameter(req, "action");
 		int page = ParamUtils.getIntParameter(req, "page", 1);
@@ -144,7 +169,7 @@ public class RoomController {
 		} else if ("life".equals(roomType)) {
 			room.setType(RoomType.LIFE);
 		}
-		WSMsgInboundPool.userJoinRoom(dto.getEmail(), roomName, room.getType());
+		WSMsgInboundPool.userJoinRoom(dto, roomName, room.getType());
 		return room;
 	}
 }
