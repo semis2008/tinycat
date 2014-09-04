@@ -6,41 +6,41 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <div class="row panel">
-	<div class="panel-heading">
+	<div class="panel-heading" id="room_title">
 		${room.typeName } <i class="fa fa-angle-double-right"></i> ${room.name }
 	</div>
 	<div class="panel-body">
 		<div class="col-lg-9">
 			<div class="chat_container" id="chat_window">
 				<ul id="chat_content" class="list-unstyled">
-					<li>
-						<div class="media">
-							<a href="javascript:void(0)" class="pull-left"> <img
-								class="media-object img-polaroid"
-								style="width: 32px; height: 32px;"
-								src="<%=headPath%>/tinycat.jpg">
-							</a>
-							<div class="media-body">
-								<blockquote>
-									<span>这个电视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样....</span>
-								</blockquote>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="media">
-							<a href="javascript:void(0)" class="pull-right"> <img
-								class="media-object img-polaroid"
-								style="width: 32px; height: 32px;"
-								src="<%=headPath%>/tinycat.jpg">
-							</a>
-							<div class="media-body">
-								<blockquote class="blockquote-reverse">
-									<span>是啊是啊，浪费我时间</span>
-								</blockquote>
-							</div>
-						</div>
-					</li>
+<!-- 					<li> -->
+<!-- 						<div class="media"> -->
+<!-- 							<a href="javascript:void(0)" class="pull-left"> <img -->
+<!-- 								class="media-object img-polaroid" -->
+<!-- 								style="width: 32px; height: 32px;" -->
+<!-- 								src="<%=headPath%>/tinycat.jpg"> -->
+<!-- 							</a> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<blockquote> -->
+<!-- 									<span>这个电视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样.视剧真的不怎么样....</span> -->
+<!-- 								</blockquote> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="media"> -->
+<!-- 							<a href="javascript:void(0)" class="pull-right"> <img -->
+<!-- 								class="media-object img-polaroid" -->
+<!-- 								style="width: 32px; height: 32px;" -->
+<!-- 								src="<%=headPath%>/tinycat.jpg"> -->
+<!-- 							</a> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<blockquote class="blockquote-reverse"> -->
+<!-- 									<span>是啊是啊，浪费我时间</span> -->
+<!-- 								</blockquote> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 				</ul>
 			</div>
 		</div>

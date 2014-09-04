@@ -31,7 +31,10 @@ function WSonMessage(event) {
 		addRoomAction(msg.roomName, msg.roomType);
 	} else if (msg.action == "user_join") {
 		joinUserAction(msg.user);
+	} else if (msg.action == "user_leave") {
+		leaveUserAction(msg.user);
 	}
+	
 };
 
 function WSonClose() {
@@ -61,12 +64,51 @@ $(document).ready(function() {
 
 function joinUserAction(user) {
 	var userHtml = " <a href='javascript:void(0)' class='list-group-item'><img alt='head' " +
-		"class='head_photo_20 img-rounded'	src='" + headPath + "/" + user.photo + ".jpg'>" + user.name + "</a>";
+		"class='head_photo_20 img-rounded'	src='" + headPath + "/" + user.photo + ".jpg'> " + user.name + "</a>";
 	var users = $(".ou-users a");
 	if (users.size() > 9) {
 		$(".ou-users a:last").remove();
 	}
 	$(".ou-users").prepend(userHtml);
+}
+
+function leaveUserAction(user) {
+	var users = $(".ou-users a");
+	$.each(users, function(i, userName) {
+	    if($(userName).text()==user.name) {
+	    	$(userName).hide();
+	    }
+    });
+}
+
+function refreshUserList(type,name) {
+	// 更新用户列表
+	$.ajax({
+	    type: "POST",
+	    url: path + "/room/getUser",
+	    data: {
+	        roomType: type,
+	        roomName: name
+	    },
+	    dataType: "json",
+	    success: function(msg) {
+		    if (msg.success) {
+			    var users = msg.list;
+			    $(".ou-users").html("");
+			    $.each(users, function(i, user) {
+				    var userHtml = " <a href='javascript:void(0)' class='list-group-item'><img alt='head' " + "class='head_photo_20 img-rounded'	src='" + headPath + "/" + user.photo + ".jpg'> " + user.name + "</a>";
+				    var userList = $(".ou-users a");
+				    if (userList.size() > 9) {
+					    $(".ou-users a:last").remove();
+				    }
+				    $(".ou-users").append(userHtml);
+			    });
+		    } else {
+			    alert(msg.list);
+		    }
+
+	    }
+	});
 }
 
 function addRoomAction(name, type) {

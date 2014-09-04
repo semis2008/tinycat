@@ -69,6 +69,25 @@ public class RoomController {
 		JsonUtil.outputDTOToJSON(room, true, resp);
 	}
 	
+	@RequestMapping(value = "/getUser")
+	private void agetUser(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		String type = ParamUtils.getParameter(req, "roomType");
+		String roomName = ParamUtils.getParameter(req, "roomName");
+		if ("".equals(type) || "".equals(roomName)) {
+			JsonUtil.outputDTOToJSON("参数错误", false, resp);
+			return;
+		}
+		//获取房间用户
+		List<UserDTO> users = new ArrayList<UserDTO>();
+		List<String> emails = WSMsgInboundPool.getUsersByRoom(roomName, RoomType.valueOf(type));
+		for(String email:emails) {
+			User user = userService.getUserByEmail(email);
+			if(user!=null)
+				users.add(UserDTO.init(user));
+		}
+		JsonUtil.outputDTOToJSON(users, true, resp);
+	}
+	
 	@RequestMapping(value = "/join")
 	private void join(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
@@ -95,7 +114,11 @@ public class RoomController {
 			typeName = "生活";
 		}
 		WSMsgInboundPool.userJoinRoom(UserDTO.init(user), roomName, roomType,typeName);
-		JsonUtil.outputDTOToJSON(null, true, resp);
+		Room room = new Room();
+		room.setName(roomName);
+		room.setTypeName(typeName);
+		room.setType(roomType);
+		JsonUtil.outputDTOToJSON(room, true, resp);
 	}
 	
 	@RequestMapping(value = "/change")

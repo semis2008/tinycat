@@ -75,17 +75,27 @@ public class WSMsgInboundPool {
 	
 	public static void userJoinRoom(UserDTO user,String roomName,RoomType roomType,String typeName) {
 		WSMsgInbound inbound = loginConnections.get(user.getEmail());
+		if(inbound.getRoomName()!=null&&inbound.getRoomType()!=null) {
+			//本来就在房间内，不发送消息
+			if(inbound.getRoomName().equals(roomName)&&inbound.getRoomType()==roomType) {
+				return;
+			}
+			UserMsg userMsg = new UserMsg();
+			userMsg.setAction("user_leave");
+			userMsg.setUser(user);
+			Gson gson = new Gson();
+			WSMsgInboundPool.sendMessageWithInRoomExceptSelf(gson.toJson(userMsg), inbound.getRoomName(), inbound.getRoomType(),user.getEmail());
+		}
 		inbound.setRoomName(roomName);
 		inbound.setRoomType(roomType);
 		inbound.setTypeName(typeName);
 		loginConnections.put(user.getEmail(), inbound);
 		
-		//向所有登陆用户发送通知
 		UserMsg userMsg = new UserMsg();
 		userMsg.setAction("user_join");
 		userMsg.setUser(user);
 		Gson gson = new Gson();
-		WSMsgInboundPool.sendMessageWithInRoom(gson.toJson(userMsg), roomName, roomType);
+		WSMsgInboundPool.sendMessageWithInRoomExceptSelf(gson.toJson(userMsg), roomName, roomType,user.getEmail());
 	}
 	
 	public static List<String> getUsersByRoom(String roomName,RoomType roomType) {
@@ -149,6 +159,28 @@ public class WSMsgInboundPool {
 			for (String key : keySet) {
 				WSMsgInbound inbound = loginConnections.get(key);
 				if(inbound != null&&inbound.getRoomName().equals(roomName)&&inbound.getRoomType()==type){
+					inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	  * 向指定房间推送消息(不包括指定user)
+	  *
+	  * @autor: wn  2014-8-27 下午4:21:15
+	  * @param message
+	 */
+	public static void sendMessageWithInRoomExceptSelf(String message,String roomName,RoomType type,String user){
+		try {
+			Set<String> keySet = loginConnections.keySet();
+			System.out.println("send message to Room:" + roomName + ",message content : " + message);
+			for (String key : keySet) {
+				WSMsgInbound inbound = loginConnections.get(key);
+				if(inbound != null&&inbound.getRoomName().equals(roomName)&&inbound.getRoomType()==type&&!inbound.getUser().equals(user)){
 					inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
 				}
 			}
