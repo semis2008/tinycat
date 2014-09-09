@@ -103,6 +103,23 @@ public class IndexController {
 		return new ModelAndView("unauthorized");
 	}
 
+	/**
+	 * 
+	  * 退出
+	  *
+	  * @autor: wn  2014-9-5 下午2:34:07
+	  * @param req
+	  * @param resp
+	  * @return
+	  * @throws Exception
+	 */
+	@RequestMapping(value = "/logout")
+	private ModelAndView logout(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		String email  =WebUtil.getLoginUser();
+		WSMsgInboundPool.removeUserConn(email);
+		return new ModelAndView("redirect:userLogout");
+	}
+
 	private void setLoginUserDTO(HttpServletRequest req) {
 		UserDTO user = WebUtil.getLoginUser(userService);
 		req.setAttribute("loginUser", user);

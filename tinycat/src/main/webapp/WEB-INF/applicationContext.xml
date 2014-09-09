@@ -89,7 +89,7 @@
 				/WS = anon
 				/room/* = anon
 <!-- 				/room/* = authc -->
-				/logout = logout
+				/userLogout = logout
 			</value>
 		</property>
 	</bean>

@@ -272,6 +272,7 @@ function addRoom() {
 			    $("#add-room-password").val("");
 			    $("#new-room-div").fadeToggle("slow");
 			    rebuildRoom(room);
+			    window.location.hash = "#talk";
 		    } else {
 			    alert(msg.list);
 		    }

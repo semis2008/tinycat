@@ -26,13 +26,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tinycat.dto.Room;
+import com.tinycat.dto.UserDTO;
 import com.tinycat.pojo.User;
 import com.tinycat.service.UserService;
 import com.tinycat.util.DateUtil;
 import com.tinycat.util.JsonUtil;
 import com.tinycat.util.ParamUtils;
+import com.tinycat.util.RoomType;
 import com.tinycat.util.StringUtil;
 import com.tinycat.util.WebUtil;
+import com.tinycat.web.WSMsgInboundPool;
 
 /**
  * 用户相关处理类
@@ -43,10 +47,9 @@ import com.tinycat.util.WebUtil;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
 	@Resource
 	UserService userService;
-	
+
 	/**
 	 * 登陆
 	 * 
@@ -76,8 +79,17 @@ public class UserController {
 			JsonUtil.outputDTOToJSON("账号不存在", false, resp);
 			return;
 		}
-		//更新用户登录时间
+		// 更新用户登录时间
 		userService.updateUserLoginTime(email);
+		// 登陆时加入默认房间
+		Room room = new Room();
+		room.setName("Wantalk官方房间");
+		room.setType(RoomType.DEFAULT);
+		room.setTypeName("默认");
+		UserDTO dto = new UserDTO();
+		dto.setEmail(email);
+		WSMsgInboundPool.userJoinRoom(dto, room.getName(), room.getType(), room.getTypeName());
+		
 		JsonUtil.outputDTOToJSON(null, true, resp);
 	}
 
@@ -92,21 +104,20 @@ public class UserController {
 	@RequestMapping(value = "/regist")
 	private void regist(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		boolean hasNameAlready = userService.hasNameAlready(ParamUtils.getParameter(req, "name"));
-		if(hasNameAlready) {
+		if (hasNameAlready) {
 			JsonUtil.outputDTOToJSON("注册失败,用户名已被注册", false, resp);
-			return;			
+			return;
 		}
-		
 		boolean result = userService.userRegist(req);
-		if(result) {
+		if (result) {
 			JsonUtil.outputDTOToJSON("注册成功", result, resp);
 			return;
-		}else {
+		} else {
 			JsonUtil.outputDTOToJSON("注册失败", result, resp);
 			return;
 		}
 	}
-	
+
 	/**
 	 * 更换头像
 	 * 
@@ -118,21 +129,20 @@ public class UserController {
 	@RequestMapping(value = "/changephoto")
 	private void changePhoto(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
-		
-		if(userId==0l) {
+		if (userId == 0l) {
 			JsonUtil.outputDTOToJSON("参数错误", false, resp);
-			return;			
+			return;
 		}
 		String newPhoto = userService.changeUserPhoto(userId);
-		if(newPhoto.equals("")) {
+		if (newPhoto.equals("")) {
 			JsonUtil.outputDTOToJSON("出错了", false, resp);
 			return;
-		}else {
+		} else {
 			JsonUtil.outputDTOToJSON(newPhoto, true, resp);
 			return;
 		}
 	}
-	
+
 	/**
 	 * 编辑昵称
 	 * 
@@ -145,20 +155,17 @@ public class UserController {
 	private void changeName(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		Long userId = ParamUtils.getLongParameter(req, "userId", 0l);
 		String name = ParamUtils.getParameter(req, "name");
-		
-		if(userId==0l||"".equals(name)) {
+		if (userId == 0l || "".equals(name)) {
 			JsonUtil.outputDTOToJSON("参数错误", false, resp);
-			return;			
+			return;
 		}
-		
-		boolean result = userService.changeUserName(userId,name);
-		if(result) {
+		boolean result = userService.changeUserName(userId, name);
+		if (result) {
 			JsonUtil.outputDTOToJSON("", true, resp);
 			return;
-		}else {
+		} else {
 			JsonUtil.outputDTOToJSON("出错了", false, resp);
 			return;
 		}
 	}
-
 }

@@ -8,6 +8,7 @@ import org.apache.catalina.websocket.MessageInbound;
 import org.apache.catalina.websocket.WsOutbound;
 
 import com.tinycat.util.RoomType;
+import com.tinycat.util.WebUtil;
 
 public class WSMsgInbound extends MessageInbound {
 
@@ -59,7 +60,9 @@ public class WSMsgInbound extends MessageInbound {
 	@Override
 	protected void onClose(int status) {
 		// 触发关闭事件，在连接池中移除连接
-		WSMsgInboundPool.removeMessageInbound(this);
+//		if(WebUtil.getLoginUser().equals("null")) {
+//			WSMsgInboundPool.removeMessageInbound(this);
+//		}
 	}
 
 	@Override

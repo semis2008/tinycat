@@ -75,7 +75,7 @@ function joinUserAction(user) {
 function leaveUserAction(user) {
 	var users = $(".ou-users a");
 	$.each(users, function(i, userName) {
-	    if($(userName).text()==user.name) {
+	    if($.trim($(userName).text())==user.name) {
 	    	$(userName).hide();
 	    }
     });
