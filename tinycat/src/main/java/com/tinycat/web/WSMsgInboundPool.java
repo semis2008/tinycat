@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.catalina.websocket.WsOutbound;
+
 import com.google.gson.Gson;
 import com.tinycat.dto.Room;
 import com.tinycat.dto.RoomMsg;
@@ -144,7 +146,8 @@ public class WSMsgInboundPool {
 			for (String key : keySet) {
 				WSMsgInbound inbound = loginConnections.get(key);
 				if (inbound != null) {
-					inbound.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
+					WsOutbound outbound = inbound.getWsOutbound();
+					outbound.writeTextMessage(CharBuffer.wrap(message));
 				}
 			}
 		} catch (IOException e) {

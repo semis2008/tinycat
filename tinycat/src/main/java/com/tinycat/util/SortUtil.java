@@ -167,7 +167,31 @@ public class SortUtil {
 		}
 	}
 	
-	
+	public static void doQS(int[] arr,int start,int end,int val) {
+		if(start>=end) {
+			return;
+		}else{
+			//取比较点,和最右边交换
+			int sign = start;
+			swap(arr,sign,end);
+			int j=start;//j代表一次循环中，若出现比比较点小的值之后，交换的位置
+			for(int i=start;i<=end;i++) {
+				if(arr[i]<arr[end]) {
+					swap(arr,i,j);
+					j++;//j前面的元素都是比比较点的值小的值
+				}
+			}
+			//j和标记元素互换，这样，j前面的都是比比较点小的，后面的都比j大
+			swap(arr,j,end);
+			doQS(arr, start, j, val);
+			doQS(arr, j+1, end, val);
+			
+			
+			
+			
+		}
+		
+	}
 	
 	
 	
@@ -190,7 +214,7 @@ public class SortUtil {
 			return n * multiply(n - 1);
 	}
 
-	private void swap(int[] list, int i, int j) {
+	private static void swap(int[] list, int i, int j) {
 		swapCount++;
 		int temp = list[i];
 		list[i] = list[j];

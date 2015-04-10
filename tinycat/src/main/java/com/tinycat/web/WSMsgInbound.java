@@ -19,6 +19,7 @@ public class WSMsgInbound extends MessageInbound {
 	private String typeName;
 	
 	public WSMsgInbound(String user) {
+		super();
 		this.user = user;
 	}
 
